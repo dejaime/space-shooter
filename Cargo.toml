@@ -1,0 +1,13 @@
+[package]
+name = "jam-one"
+version = "0.1.0"
+authors = ["Dejaime Antônio de Oliveira Neto <contact@dejai.me>"]
+edition = "2018"
+
+[dependencies]
+amethyst = "0.15.0"
+
+[features]
+default = ["vulkan"]
+empty = ["amethyst/empty"]
+vulkan = ["amethyst/vulkan"]
