@@ -1,4 +1,4 @@
 (
-  title: "jam-one",
-  dimensions: Some((500, 500)),
+  title: "Space Shooter",
+  dimensions: Some((1920, 1080)),
 )
