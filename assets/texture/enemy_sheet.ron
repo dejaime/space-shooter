@@ -1,0 +1,120 @@
+List((
+    texture_width: 192,
+    texture_height: 384,
+    sprites: [
+        // Enemy 1
+        (
+            x: 0,
+            y: 0,
+            width: 64,
+            height: 64,
+        ),
+        (
+            x: 64,
+            y: 0,
+            width: 64,
+            height: 64,
+        ),
+        (
+            x: 128,
+            y: 0,
+            width: 64,
+            height: 64,
+        ),
+        // Enemy 2
+        (
+            x: 0,
+            y: 64,
+            width: 64,
+            height: 64,
+        ),
+        (
+            x: 64,
+            y: 64,
+            width: 64,
+            height: 64,
+        ),
+        (
+            x: 128,
+            y: 64,
+            width: 64,
+            height: 64,
+        ),
+        // Enemy 3
+        (
+            x: 0,
+            y: 128,
+            width: 64,
+            height: 64,
+        ),
+        (
+            x: 64,
+            y: 128,
+            width: 64,
+            height: 64,
+        ),
+        (
+            x: 128,
+            y: 128,
+            width: 64,
+            height: 64,
+        ),
+        // Enemy 4
+        (
+            x: 0,
+            y: 192,
+            width: 64,
+            height: 64,
+        ),
+        (
+            x: 64,
+            y: 192,
+            width: 64,
+            height: 64,
+        ),
+        (
+            x: 128,
+            y: 192,
+            width: 64,
+            height: 64,
+        ),
+        // Enemy 5
+        (
+            x: 0,
+            y: 256,
+            width: 64,
+            height: 64,
+        ),
+        (
+            x: 64,
+            y: 256,
+            width: 64,
+            height: 64,
+        ),
+        (
+            x: 128,
+            y: 256,
+            width: 64,
+            height: 64,
+        ),
+        // Enemy 6
+        (
+            x: 0,
+            y: 320,
+            width: 64,
+            height: 64,
+        ),
+        (
+            x: 64,
+            y: 320,
+            width: 64,
+            height: 64,
+        ),
+        (
+            x: 128,
+            y: 320,
+            width: 64,
+            height: 64,
+        ),
+    ],
+))
