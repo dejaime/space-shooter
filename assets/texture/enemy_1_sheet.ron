@@ -1,0 +1,25 @@
+List((
+    texture_width: 192,
+    texture_height: 384,
+    sprites: [
+        // Enemy 1
+        (
+            x: 0,
+            y: 0,
+            width: 64,
+            height: 64,
+        ),
+        (
+            x: 64,
+            y: 0,
+            width: 64,
+            height: 64,
+        ),
+        (
+            x: 128,
+            y: 0,
+            width: 64,
+            height: 64,
+        )
+    ],
+))
