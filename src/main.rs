@@ -23,8 +23,6 @@ fn main() -> amethyst::Result<()> {
     let config_dir = app_root.join("config");
     let display_config_path = config_dir.join("display.ron");
 
-    audio::initialise_music(world: &mut World);
-
     let game_data = GameDataBuilder::default()
         .with_bundle(
             RenderingBundle::<DefaultBackend>::new()

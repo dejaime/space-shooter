@@ -31,7 +31,7 @@ pub fn initialise_music(world: &mut World) {
     let music = {
         let loader = world.read_resource::<Loader>();
 
-        let music = MUSIC_TRACKS
+        let music = MUSIC_FILES
             .iter()
             .map(|music_file| load_audio_track(&loader, &world, music_file))
             .collect::<Vec<_>>()
