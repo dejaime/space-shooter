@@ -6,9 +6,5 @@ use amethyst::{
     renderer::{SpriteRender, SpriteSheet},
 };
 
-
-const SHIP_COLLISION_RADIUS: f32 = 64.0;
-const SHIP_SPAWN_Y_OFFSET: f32 = 64.0;
-
 use amethyst::ecs::prelude::{Component, DenseVecStorage};
 
