@@ -9,3 +9,7 @@ To run the game, run the following command, which defaults to the `vulkan` graph
 ```bash
 cargo run
 ```
+
+### License
+
+This work is licensed under GPL-3.0, except the assets folder that has license files wherever necessary.
