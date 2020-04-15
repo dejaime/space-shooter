@@ -12,4 +12,4 @@ cargo run
 
 ### License
 
-This work is licensed under GPL-3.0, except the assets folder that has license files wherever necessary.
+This work is licensed under GPL-3.0, except the assets folder that has ATTRIBUTION or LICENSE files wherever necessary.
