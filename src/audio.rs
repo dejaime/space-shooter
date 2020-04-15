@@ -23,7 +23,7 @@ pub fn initialise_music(world: &mut World) {
 
         let mut tracks = Vec::new();
 
-        let audio_files = fs::read_dir("./assets/audio/").unwrap();
+        let audio_files = fs::read_dir("./assets/audio/music").unwrap();
         
         for file in audio_files {
             let track_file_path = format!("{}", file.unwrap().path().display());
