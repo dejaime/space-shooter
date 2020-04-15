@@ -1,4 +1,5 @@
 use amethyst::{
+    audio::{AudioBundle, DjSystemDesc},
     core::transform::TransformBundle,
     prelude::*,
     renderer::{
@@ -13,6 +14,7 @@ mod state;
 use state::SpaceState;
 
 mod audio;
+use audio::Music;
 
 fn main() -> amethyst::Result<()> {
     amethyst::start_logger(Default::default());
@@ -32,7 +34,13 @@ fn main() -> amethyst::Result<()> {
                 )
                 .with_plugin(RenderFlat2D::default()),
         )?
-        .with_bundle(TransformBundle::new())?;
+        .with_bundle(TransformBundle::new())?
+        .with_bundle(AudioBundle::default())?
+        .with_system_desc(
+            DjSystemDesc::new(|music: &mut Music| music.music.next()),
+            "dj_system",
+            &[],
+        );
 
     let mut game = Application::new(assets_dir, SpaceState {..Default::default()}, game_data)?;
     game.run();
