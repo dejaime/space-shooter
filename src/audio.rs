@@ -4,18 +4,8 @@ use amethyst::{
     ecs::{World, WorldExt},
 };
 
-use std::{iter::Cycle, vec::IntoIter};
-
-// const BOUNCE_SOUND: &str = "audio/bounce.ogg";
-// const SCORE_SOUND: &str = "audio/score.ogg";
-
-const MUSIC_FILES: &[&str] = &[
-    "audio/GalacticTemple.ogg",
-    "audio/ObservingTheStar.ogg",
-    "audio/bleeding_out2.ogg",
-    "audio/through space.ogg",
-];
-
+use std::{fs, iter::Cycle, vec::IntoIter};
+use rand::seq::SliceRandom;
 
 pub struct Music {
     pub music: Cycle<IntoIter<SourceHandle>>,
@@ -31,7 +21,25 @@ pub fn initialise_music(world: &mut World) {
     let music = {
         let loader = world.read_resource::<Loader>();
 
-        let music = MUSIC_FILES
+        let mut tracks = Vec::new();
+
+        let audio_files = fs::read_dir("./assets/audio/").unwrap();
+        
+        for file in audio_files {
+            let track_file_path = format!("{}", file.unwrap().path().display());
+            let split_vec: Vec<&str> = track_file_path.split("./assets/").collect();
+            let fixed_name = split_vec.last().unwrap().clone();
+            if fixed_name.ends_with(".ogg") {
+                tracks.push(format!("{}", fixed_name));
+            } else {
+                println! ("Invalid audio extension on file {}, only OGG is supported.", fixed_name);
+            }
+        }
+
+        let mut random = rand::thread_rng();
+        tracks.shuffle(&mut random);
+
+        let music = tracks
             .iter()
             .map(|music_file| load_audio_track(&loader, &world, music_file))
             .collect::<Vec<_>>()
