@@ -10,10 +10,10 @@ use std::{iter::Cycle, vec::IntoIter};
 // const SCORE_SOUND: &str = "audio/score.ogg";
 
 const MUSIC_FILES: &[&str] = &[
-    "audio/GalacticTemple.ogg"
-    "audio/ObservingTheStar.ogg"
-    "audio/bleeding_out2.ogg"
-    "audio/through space.ogg"
+    "audio/GalacticTemple.ogg",
+    "audio/ObservingTheStar.ogg",
+    "audio/bleeding_out2.ogg",
+    "audio/through space.ogg",
 ];
 
 
