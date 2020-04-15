@@ -1,9 +1,8 @@
 use amethyst::{core::timing::Time, prelude::*};
 
+use crate::audio::initialise_music;
 
-use crate::audio;
-
-
+#[derive(Default)]
 pub struct SpaceState {
     pub player_one_lives: u8,
     pub player_two_lives: u8,
@@ -23,7 +22,7 @@ pub struct SpaceState {
     pub player_one_kills: u32,
     pub player_two_kills: u32,
 
-    open_menu_timer: Option<f32>,
+    pub open_menu_timer: Option<f32>,
 }
 
 impl SimpleState for SpaceState {
