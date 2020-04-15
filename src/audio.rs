@@ -32,7 +32,7 @@ pub fn initialise_music(world: &mut World) {
             if fixed_name.ends_with(".ogg") {
                 tracks.push(format!("{}", fixed_name));
             } else {
-                println! ("Invalid audio extension on file {}, only OGG is supported.", fixed_name);
+                println! ("[ERROR] Invalid audio extension on file {}, only OGG is supported. Ignoring file.", fixed_name);
             }
         }
 
