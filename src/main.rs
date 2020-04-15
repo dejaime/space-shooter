@@ -12,6 +12,8 @@ use amethyst::{
 mod state;
 use state::MenuState;
 
+mod assets;
+
 fn main() -> amethyst::Result<()> {
     amethyst::start_logger(Default::default());
 

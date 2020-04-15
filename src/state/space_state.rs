@@ -1,26 +1,32 @@
 use amethyst::{core::timing::Time, prelude::*};
 
 pub struct SpaceState {
-    player_one_score: u64,
-    player_two_score: u64,
+    pub player_one_lives: u8,
+    pub player_two_lives: u8,
 
-    player_one_distance_travelled: u64,
-    player_two_distance_travelled: u64,
+    pub player_one_score: u64,
+    pub player_two_score: u64,
 
-    player_one_projectiles_fired: u64,
-    player_two_projectiles_fired: u64,
+    pub player_one_distance_travelled: u32,
+    pub player_two_distance_travelled: u32,
 
-    player_one_damage_dealt: u64,
-    player_two_damage_dealt: u64,
-    
-    player_one_kills: u64,
-    player_two_kills: u64,
+    pub player_one_projectiles_fired: u64,
+    pub player_two_projectiles_fired: u64,
+
+    pub player_one_damage_dealt: u64,
+    pub player_two_damage_dealt: u64,
+
+    pub player_one_kills: u32,
+    pub player_two_kills: u32,
 
     open_menu_timer: Option<f32>,
 }
 
 impl SimpleState for SpaceState {
     fn on_start(&mut self, _data: StateData<'_, GameData<'_, '_>>) {
+        self.player_one_lives = 3;
+        self.player_two_lives = 3;
+
         self.player_one_score = 0;
         self.player_two_score = 0;
 
