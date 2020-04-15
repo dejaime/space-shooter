@@ -10,9 +10,9 @@ use amethyst::{
 };
 
 mod state;
-use state::MenuState;
+use state::SpaceState;
 
-mod assets;
+mod audio;
 
 fn main() -> amethyst::Result<()> {
     amethyst::start_logger(Default::default());
@@ -22,6 +22,8 @@ fn main() -> amethyst::Result<()> {
     let assets_dir = app_root.join("assets");
     let config_dir = app_root.join("config");
     let display_config_path = config_dir.join("display.ron");
+
+    audio::initialise_music(world: &mut World);
 
     let game_data = GameDataBuilder::default()
         .with_bundle(
@@ -34,7 +36,7 @@ fn main() -> amethyst::Result<()> {
         )?
         .with_bundle(TransformBundle::new())?;
 
-    let mut game = Application::new(assets_dir, MenuState, game_data)?;
+    let mut game = Application::new(assets_dir, SpaceState, game_data)?;
     game.run();
 
     Ok(())
