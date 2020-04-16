@@ -6,7 +6,7 @@ use amethyst::{
     window::ScreenDimensions,
 };
 
-use crate::component::ship_component::Ship;
+use crate::component::{ship_component::Ship, player_component::Player};
 use crate::graphics::{get_spritesheet_handle};
 
 const SHIP_COLLISION_RADIUS: f32 = 32.0;
@@ -30,8 +30,13 @@ pub fn spawn_player_ship(world: &mut World) -> Entity {
         0.0,
     ));
 
+    world.register::<Ship>();
+
+    world.register::<Player>();
+
     world
         .create_entity()
+        .with(Player{..Default::default()})
         .with(Ship {
             radius: 0.0,
             velocity: 0.0,
