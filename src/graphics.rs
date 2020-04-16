@@ -6,11 +6,10 @@ use amethyst::{
 
 use std::collections::BTreeMap;
 
-
-#[derive(Clone)]
-pub struct TextureResource {
-    //pub texture_map: HashMap<str, Texture>
+pub struct SpritesHolder {
+    pub sprite_map: BTreeMap<&'static str, Handle<SpriteSheet>>,
 }
+
 
 fn load_texture(world: &World, image_file: &str) -> Handle<Texture> {
     let loader = world.read_resource::<Loader>();
@@ -74,4 +73,9 @@ pub fn initialise_graphics(world: &mut World) -> BTreeMap<&'static str, Handle<S
     
     spritesheet_map
 
+}
+
+pub fn get_spritesheet_handle (world: &mut World, spritesheet_name: &str) -> Handle<SpriteSheet> {
+    let resource = world.fetch::<SpritesHolder>();
+    resource.sprite_map.get(spritesheet_name).unwrap().clone()
 }

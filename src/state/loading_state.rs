@@ -1,22 +1,18 @@
 use amethyst::prelude::*;
 
 use amethyst::{
-    assets::Handle, core::transform::Transform, renderer::camera::Camera, renderer::SpriteSheet,
+    core::transform::Transform, renderer::camera::Camera,
     window::ScreenDimensions, GameData, SimpleState, StateData,
 };
 
-use std::collections::BTreeMap;
 
 use crate::audio::initialise_music;
-use crate::graphics::initialise_graphics;
+use crate::graphics::{initialise_graphics, SpritesHolder};
 
 #[derive(Default)]
 pub struct LoadingState {}
 
 
-pub struct SpritesHolder {
-    pub sprite_map: BTreeMap<&'static str, Handle<SpriteSheet>>,
-}
 
 
 impl SimpleState for LoadingState {
