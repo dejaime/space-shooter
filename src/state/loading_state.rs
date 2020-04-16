@@ -10,24 +10,28 @@ use std::collections::BTreeMap;
 use crate::audio::initialise_music;
 use crate::graphics::initialise_graphics;
 
-pub struct LoadingState {
-    pub sprite_map: BTreeMap<&'static str, Handle<SpriteSheet>>,
-}
+#[derive(Default)]
+pub struct LoadingState {}
 
-impl Default for LoadingState {
-    fn default() -> Self {
-        LoadingState {
-            sprite_map: BTreeMap::new()
-        }
-    }
+
+pub struct SpritesHolder {
+    pub sprite_map: BTreeMap<&'static str, Handle<SpriteSheet>>,
 }
 
 
 impl SimpleState for LoadingState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
+        
+        let sprite_map = initialise_graphics(data.world);
+        data.world.insert(SpritesHolder {sprite_map});
+
         initialise_music(data.world);
-        self.sprite_map = initialise_graphics(data.world);
+
         initialise_camera(data.world);
+    }
+
+    fn update(&mut self, _data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
+        Trans::None
     }
 }
 
