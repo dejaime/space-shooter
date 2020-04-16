@@ -1,6 +1,5 @@
 use amethyst::{core::timing::Time, prelude::*};
 
-use crate::audio::initialise_music;
 
 #[derive(Default)]
 pub struct SpaceState {
@@ -26,7 +25,7 @@ pub struct SpaceState {
 }
 
 impl SimpleState for SpaceState {
-    fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
+    fn on_start(&mut self, _data: StateData<'_, GameData<'_, '_>>) {
         self.player_one_lives = 3;
         self.player_two_lives = 3;
 
@@ -47,7 +46,6 @@ impl SimpleState for SpaceState {
 
         self.open_menu_timer.replace(1.0);
 
-        initialise_music(data.world);
     }
 
     fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {

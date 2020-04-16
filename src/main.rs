@@ -11,7 +11,7 @@ use amethyst::{
 };
 
 mod state;
-use state::SpaceState;
+use state::LoadingState;
 
 mod audio;
 use audio::Music;
@@ -30,7 +30,7 @@ fn main() -> amethyst::Result<()> {
             RenderingBundle::<DefaultBackend>::new()
                 .with_plugin(
                     RenderToWindow::from_config_path(display_config_path)?
-                        .with_clear([0.34, 0.36, 0.52, 1.0]),
+                        .with_clear([0.1, 0.1, 0.1, 1.0]),
                 )
                 .with_plugin(RenderFlat2D::default()),
         )?
@@ -42,7 +42,7 @@ fn main() -> amethyst::Result<()> {
             &[],
         );
 
-    let mut game = Application::new(assets_dir, SpaceState {..Default::default()}, game_data)?;
+    let mut game = Application::new(assets_dir, LoadingState {..Default::default()}, game_data)?;
     game.run();
 
     Ok(())
