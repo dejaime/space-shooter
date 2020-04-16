@@ -45,7 +45,7 @@ fn main() -> amethyst::Result<()> {
             "dj_system",
             &[],
         );
-    let mut game = Application::new(assets_dir, LoadingState { seat: , ..Default::default()}, game_data)?;
+    let mut game = Application::new(assets_dir, LoadingState {}, game_data)?;
     game.run();
 
     Ok(())
