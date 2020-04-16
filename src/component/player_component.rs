@@ -14,3 +14,12 @@ pub struct Player {
 impl Component for Player {
     type Storage = VecStorage<Self>;
 }
+
+impl Default for Player {
+    fn default() -> Self { 
+        Player {
+            seat: PlayerSeat::P1,
+            hit_invincibility_timer: 0.0
+        }
+     }
+}
