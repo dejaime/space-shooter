@@ -6,6 +6,7 @@ use amethyst::{
 };
 
 use crate::audio::initialise_music;
+use crate::graphics::initialise_graphics;
 
 #[derive(Default)]
 pub struct LoadingState {
@@ -15,6 +16,7 @@ pub struct LoadingState {
 impl SimpleState for LoadingState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
         initialise_music(data.world);
+        initialise_graphics(data.world);
         initialise_camera(data.world);
     }
 }
