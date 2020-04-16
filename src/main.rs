@@ -18,6 +18,7 @@ mod audio;
 mod graphics;
 
 mod entity;
+mod component;
 
 fn main() -> amethyst::Result<()> {
     amethyst::start_logger(Default::default());
