@@ -14,8 +14,6 @@ use crate::state::SpaceState;
 pub struct LoadingState {}
 
 
-
-
 impl SimpleState for LoadingState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
         

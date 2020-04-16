@@ -48,7 +48,7 @@ impl SimpleState for SpaceState {
         self.open_menu_timer.replace(1.0);
 
 
-        spawn_player_ship(data.world);
+        spawn_player_ship(data.world, false);
     }
 
     fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
