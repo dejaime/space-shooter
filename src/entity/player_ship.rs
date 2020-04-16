@@ -29,7 +29,7 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
     let mut local_transform = Transform::default();
 
     local_transform.set_translation(Vector3::new(
-        0.0, //screen_dimensions.0 / 2.0 - SHIP_COLLISION_RADIUS,
+        screen_dimensions.0 / 2.0 - SHIP_COLLISION_RADIUS,
         SHIP_SPAWN_Y_OFFSET,
         0.0,
     ));
