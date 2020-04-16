@@ -7,6 +7,6 @@
     "p2_horizontal": Emulated(pos: Key(Right), neg: Key(Left)),
   },
   actions: {
-    "pause": [ [Key(Esc)] ],
+    "pause": [ [Key(Escape)] ],
   },
 )
