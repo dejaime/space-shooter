@@ -1,5 +1,7 @@
-use amethyst::ecs::prelude::{Component, DenseVecStorage};
+use amethyst::ecs::prelude::{Component, VecStorage};
 
-#[derive(Component)]
-#[storage(NullStorage)]
 pub struct Enemy {}
+
+impl Component for Enemy {
+    type Storage = VecStorage<Self>;
+}

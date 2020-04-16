@@ -1,12 +1,16 @@
 use amethyst::ecs::prelude::{Component, VecStorage};
 
-pub struct PlayerSeat {
-    pub P1,
-    pub P2
+
+pub enum PlayerSeat {
+    P1,
+    P2
 }
 
-#[derive(Component)]
-#[storage(VecStorage)]
 pub struct Player {
-    pub seat: PlayerSeat;
+    pub seat: PlayerSeat,
+    pub hit_invincibility_timer: f32,
+}
+
+impl Component for Player {
+    type Storage = VecStorage<Self>;
 }
