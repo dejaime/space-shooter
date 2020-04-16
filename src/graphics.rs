@@ -4,7 +4,7 @@ use amethyst::{
     renderer::{ImageFormat, SpriteSheet, SpriteSheetFormat, Texture},
 };
 
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 
 #[derive(Clone)]
@@ -32,46 +32,46 @@ fn load_spritesheet(world: &World, image_file: &str, definition_file: &str) -> H
 
 
 
-pub fn initialise_graphics(world: &mut World) -> HashMap<&str, Handle<SpriteSheet>>{
-    let mut spritesheet_hashmap = HashMap::new();
+pub fn initialise_graphics(world: &mut World) -> BTreeMap<&'static str, Handle<SpriteSheet>>{
+    let mut spritesheet_map = BTreeMap::new();
 
     //ASTEROID
-    spritesheet_hashmap.insert("asteroid", load_spritesheet(world, "texture/asteroid.png", "texture/asteroid_sheet.ron"));
+    spritesheet_map.insert("asteroid", load_spritesheet(world, "texture/asteroid.png", "texture/asteroid_sheet.ron"));
 
     //LASER
-    spritesheet_hashmap.insert("laser", load_spritesheet(world, "texture/laser.png", "texture/laser_sheet.ron"));
+    spritesheet_map.insert("laser", load_spritesheet(world, "texture/laser.png", "texture/laser_sheet.ron"));
 
     //MINIGUN
-    spritesheet_hashmap.insert("minigun", load_spritesheet(world, "texture/minigun.png", "texture/minigun_sheet.ron"));
+    spritesheet_map.insert("minigun", load_spritesheet(world, "texture/minigun.png", "texture/minigun_sheet.ron"));
 
     //PLASMA
-    spritesheet_hashmap.insert("plasma", load_spritesheet(world, "texture/plasma.png", "texture/plasma_sheet.ron"));
+    spritesheet_map.insert("plasma", load_spritesheet(world, "texture/plasma.png", "texture/plasma_sheet.ron"));
 
     //PROTON
-    spritesheet_hashmap.insert("proton", load_spritesheet(world, "texture/proton.png", "texture/proton_sheet.ron"));
+    spritesheet_map.insert("proton", load_spritesheet(world, "texture/proton.png", "texture/proton_sheet.ron"));
     
     //EXHAUST
-    spritesheet_hashmap.insert("exhaust", load_spritesheet(world, "texture/exhaust.png", "texture/exhaust_sheet.ron"));
+    spritesheet_map.insert("exhaust", load_spritesheet(world, "texture/exhaust.png", "texture/exhaust_sheet.ron"));
 
     //POWER UPS
-    spritesheet_hashmap.insert("powerup", load_spritesheet(world, "texture/powerup.png", "texture/powerup_sheet.ron"));
+    spritesheet_map.insert("powerup", load_spritesheet(world, "texture/powerup.png", "texture/powerup_sheet.ron"));
 
     //EXPLOSIONS
-    spritesheet_hashmap.insert("explosion_1", load_spritesheet(world, "texture/explosion.png", "texture/explosion_1_sheet.ron"));
-    spritesheet_hashmap.insert("explosion_2", load_spritesheet(world, "texture/explosion.png", "texture/explosion_2_sheet.ron"));
+    spritesheet_map.insert("explosion_1", load_spritesheet(world, "texture/explosion.png", "texture/explosion_1_sheet.ron"));
+    spritesheet_map.insert("explosion_2", load_spritesheet(world, "texture/explosion.png", "texture/explosion_2_sheet.ron"));
 
     //PLAYERS
-    spritesheet_hashmap.insert("player_1", load_spritesheet(world, "texture/player.png", "texture/player_1_sheet.ron"));
-    spritesheet_hashmap.insert("player_2", load_spritesheet(world, "texture/player.png", "texture/player_2_sheet.ron"));
+    spritesheet_map.insert("player_1", load_spritesheet(world, "texture/player.png", "texture/player_1_sheet.ron"));
+    spritesheet_map.insert("player_2", load_spritesheet(world, "texture/player.png", "texture/player_2_sheet.ron"));
 
     //ENEMIES
-    spritesheet_hashmap.insert("enemy_1", load_spritesheet(world, "texture/enemy.png", "texture/enemy_1_sheet.ron"));
-    spritesheet_hashmap.insert("enemy_2", load_spritesheet(world, "texture/enemy.png", "texture/enemy_2_sheet.ron"));
-    spritesheet_hashmap.insert("enemy_3", load_spritesheet(world, "texture/enemy.png", "texture/enemy_3_sheet.ron"));
-    spritesheet_hashmap.insert("enemy_4", load_spritesheet(world, "texture/enemy.png", "texture/enemy_4_sheet.ron"));
-    spritesheet_hashmap.insert("enemy_5", load_spritesheet(world, "texture/enemy.png", "texture/enemy_5_sheet.ron"));
-    spritesheet_hashmap.insert("enemy_6", load_spritesheet(world, "texture/enemy.png", "texture/enemy_6_sheet.ron"));
+    spritesheet_map.insert("enemy_1", load_spritesheet(world, "texture/enemy.png", "texture/enemy_1_sheet.ron"));
+    spritesheet_map.insert("enemy_2", load_spritesheet(world, "texture/enemy.png", "texture/enemy_2_sheet.ron"));
+    spritesheet_map.insert("enemy_3", load_spritesheet(world, "texture/enemy.png", "texture/enemy_3_sheet.ron"));
+    spritesheet_map.insert("enemy_4", load_spritesheet(world, "texture/enemy.png", "texture/enemy_4_sheet.ron"));
+    spritesheet_map.insert("enemy_5", load_spritesheet(world, "texture/enemy.png", "texture/enemy_5_sheet.ron"));
+    spritesheet_map.insert("enemy_6", load_spritesheet(world, "texture/enemy.png", "texture/enemy_6_sheet.ron"));
     
-    spritesheet_hashmap
+    spritesheet_map
 
 }
