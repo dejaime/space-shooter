@@ -1,7 +1,7 @@
 use amethyst::{
     assets::{AssetStorage, Handle, Loader},
     prelude::*,
-    renderer::{Camera, ImageFormat, SpriteRender, SpriteSheet, SpriteSheetFormat, Texture},
+    renderer::{ImageFormat, SpriteSheet, SpriteSheetFormat, Texture},
 };
 
 use std::collections::HashMap;
