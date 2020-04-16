@@ -17,6 +17,8 @@ mod audio;
 
 mod graphics;
 
+mod entity;
+
 fn main() -> amethyst::Result<()> {
     amethyst::start_logger(Default::default());
 
@@ -31,7 +33,7 @@ fn main() -> amethyst::Result<()> {
             RenderingBundle::<DefaultBackend>::new()
                 .with_plugin(
                     RenderToWindow::from_config_path(display_config_path)?
-                        .with_clear([0.1, 0.1, 0.1, 1.0]),
+                        .with_clear([0.0, 0.0, 0.0, 1.0]),
                 )
                 .with_plugin(RenderFlat2D::default()),
         )?
