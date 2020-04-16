@@ -8,6 +8,7 @@ use amethyst::{
 
 use crate::audio::initialise_music;
 use crate::graphics::{initialise_graphics, SpritesHolder};
+use crate::state::SpaceState;
 
 #[derive(Default)]
 pub struct LoadingState {}
@@ -27,7 +28,7 @@ impl SimpleState for LoadingState {
     }
 
     fn update(&mut self, _data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
-        Trans::None
+        Trans::Push(Box::new(SpaceState {..Default::default()}))
     }
 }
 
