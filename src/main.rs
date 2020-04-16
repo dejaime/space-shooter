@@ -14,7 +14,8 @@ mod state;
 use state::LoadingState;
 
 mod audio;
-use audio::Music;
+
+mod graphics;
 
 fn main() -> amethyst::Result<()> {
     amethyst::start_logger(Default::default());
@@ -37,7 +38,7 @@ fn main() -> amethyst::Result<()> {
         .with_bundle(TransformBundle::new())?
         .with_bundle(AudioBundle::default())?
         .with_system_desc(
-            DjSystemDesc::new(|music: &mut Music| music.music.next()),
+            DjSystemDesc::new(|music: &mut audio::Music| music.music.next()),
             "dj_system",
             &[],
         );
