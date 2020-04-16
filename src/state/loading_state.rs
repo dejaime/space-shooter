@@ -10,7 +10,15 @@ use crate::graphics::initialise_graphics;
 
 #[derive(Default)]
 pub struct LoadingState {
+    pub sprite_map: BTreeMap<&'static str, Handle<SpriteSheet>>,
+}
 
+impl Default for LoadingState {
+    fn default() -> Self {
+        LoadingState {
+            sprite_map: BTreeMap::new()
+        }
+    }
 }
 
 impl SimpleState for LoadingState {
