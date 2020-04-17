@@ -12,11 +12,12 @@ use crate::graphics::get_spritesheet_handle;
 use rand::prelude::*;
 
 
-pub fn spawn_prop(world: &mut World, scale: f32) -> Entity {
+pub fn spawn_prop(world: &mut World) -> Entity {
 
     let mut rng = thread_rng();
 
     let is_asteroid = rand::random::<u8>() > 230;
+    let scale = rng.gen_range(0.1, 1.0);
 
     let (sprite_sheet_handle, sprite_number, directional_speed) = if is_asteroid {
         (
