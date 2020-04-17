@@ -1,6 +1,8 @@
 use amethyst::{core::timing::Time, prelude::*};
 
-use crate::entity::player_ship::spawn_player_ship;
+use crate::entity::{player_ship::spawn_player_ship, prop::spawn_prop};
+
+use rand::prelude::*;
 
 #[derive(Default)]
 pub struct SpaceState {
@@ -47,7 +49,6 @@ impl SimpleState for SpaceState {
 
         self.spawn_prop_timer.replace(1.0);
 
-
         spawn_player_ship(data.world, false);
         spawn_player_ship(data.world, true);
     }
@@ -56,9 +57,10 @@ impl SimpleState for SpaceState {
         if let Some(mut timer) = self.spawn_prop_timer.take() {
             timer -= data.world.fetch::<Time>().delta_seconds();
             if timer <= 0.0 {
-                // Do it
+                spawn_prop(data.world);
+                let mut rng = thread_rng();
+                self.spawn_prop_timer.replace(rng.gen_range(0.0, 0.3));
             } else {
-                // Timer is not expired yet, putting it back
                 self.spawn_prop_timer.replace(timer);
             }
         }
