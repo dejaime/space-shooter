@@ -1,11 +1,12 @@
 use amethyst::ecs::prelude::{Component, VecStorage};
 
-
+#[derive(Debug)]
 pub enum PlayerSeat {
     P1,
     P2
 }
 
+#[derive(Debug)]
 pub struct Player {
     pub seat: PlayerSeat,
     pub hit_invincibility_timer: f32,
