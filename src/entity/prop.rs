@@ -14,7 +14,7 @@ use rand::prelude::*;
 
 pub fn spawn_prop(world: &mut World, rng: &mut ThreadRng) -> Entity {
 
-    let is_asteroid = rand::random::<u8>() > 230;
+    let is_asteroid = rng.gen_range(0.0, 1.0) > 0.9;
     let mut scale = rng.gen_range(0.1, 0.8);
 
     let (sprite_sheet_handle, sprite_number, directional_speed) = if is_asteroid {

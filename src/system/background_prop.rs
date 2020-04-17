@@ -22,7 +22,7 @@ impl<'s> System<'s> for BackgroundPropSystem {
 
     fn run(&mut self, (entities, mut transforms, props, time, mut prop_counter): Self::SystemData) {
         for (prop_entity, prop, transform) in (&*entities, &props, &mut transforms).join() {
-            if transform.translation().y < -400.0 {
+            if transform.translation().y < -600.0 {
                 let _ = entities.delete(prop_entity);
                 prop_counter.active_props_count -= 1;
                 continue;

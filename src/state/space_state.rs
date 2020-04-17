@@ -122,7 +122,7 @@ impl SimpleState for SpaceState {
                     }
                     spawn_prop(data.world, &mut self.rng);
                     self.spawn_prop_timer
-                        .replace(self.rng.gen_range(0.01, 0.03));
+                        .replace(self.rng.gen_range(0.01, 0.3));
                 } else {
                     self.spawn_prop_timer.replace(timer);
                 }
