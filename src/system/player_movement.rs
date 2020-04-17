@@ -1,5 +1,5 @@
 use amethyst::{
-    core::{math::Vector2, timing::Time, Transform},
+    core::{math::{Vector2, Vector3}, timing::Time, Transform},
     derive::SystemDesc,
     ecs::{Join, Read, ReadStorage, System, SystemData, WriteStorage},
     input::{InputHandler, StringBindings},
@@ -30,9 +30,11 @@ impl<'s> System<'s> for PlayerMovementSystem {
 
     fn run(
         &mut self,
-        (mut transforms, mut sprite_render, players, ships, input, time): Self::SystemData,
+        (mut transforms, mut sprite_renders, players, ships, input, time): Self::SystemData,
     ) {
-        for (player, ship, transform) in (&players, &ships, &mut transforms).join() {
+        for (player, ship, sprite_render, transform) in
+            (&players, &ships, &mut sprite_renders, &mut transforms).join()
+        {
             let (horizontal_movement, vertical_movement) = match player.seat {
                 PlayerSeat::P1 => (
                     input.axis_value("p1_horizontal").unwrap_or(0.0),
@@ -47,13 +49,30 @@ impl<'s> System<'s> for PlayerMovementSystem {
             if horizontal_movement * horizontal_movement < 0.1
                 && vertical_movement * vertical_movement < 0.1
             {
+                sprite_render.sprite_number = 0;
                 continue;
             }
 
-            //TODO: Move
-            let direction = Vector2::new(horizontal_movement, vertical_movement).normalize()
-                * ship.speed
-                * time.delta_seconds();
+            let direction = Vector2::new(horizontal_movement, vertical_movement).normalize();
+            
+            //This entire if block serves to decide which sprite to render (flat, turning, strong turning)
+            if direction.x * direction.x > 0.3 {
+                if direction.x * direction.x > 0.7 {
+                    sprite_render.sprite_number = 2;
+                } else {
+                    sprite_render.sprite_number = 1;
+                }
+
+                if direction.x > 0.0 {
+                    transform.set_scale(Vector3::new(-1.0, 1.0, 1.0));
+                } else {
+                    transform.set_scale(Vector3::new(1.0, 1.0, 1.0));
+                }
+            } else {
+                sprite_render.sprite_number = 0;
+            }
+
+            let direction = direction * ship.speed * time.delta_seconds();
 
             transform.set_translation_x(
                 (transform.translation().x + direction.x)
