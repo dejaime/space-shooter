@@ -3,8 +3,6 @@ use amethyst::{
     prelude::*,
 };
 
-use std::collections::VecDeque;
-
 use crate::entity::{player_ship::spawn_player_ship, prop::spawn_prop};
 
 use rand::prelude::*;
@@ -31,7 +29,6 @@ pub struct SpaceState {
     pub spawn_prop_timer: Option<f32>,
     pub running_intro: bool,
 
-    pub last_deltas: VecDeque<f32>,
     pub rng: ThreadRng,
 }
 
@@ -59,8 +56,6 @@ impl Default for SpaceState {
             spawn_prop_timer: Some(1.0),
             running_intro: true,
 
-            last_deltas: VecDeque::new(),
-
             rng: thread_rng(),
         }
     }
@@ -82,9 +77,6 @@ impl Default for PropCounter {
 
 impl SimpleState for SpaceState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
-        for _ in 0..120 {
-            self.last_deltas.push_front(0.015);
-        }
         spawn_player_ship(data.world, false);
         spawn_player_ship(data.world, true);
 
@@ -95,13 +87,6 @@ impl SimpleState for SpaceState {
 
     fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
         let delta_time = data.world.fetch::<Time>().delta_seconds();
-        self.last_deltas.pop_back();
-        self.last_deltas.push_front(delta_time);
-
-        let mut frame_times = 0.0;
-        for i in 0..120 {
-            frame_times += self.last_deltas[i];
-        }
 
         if self.running_intro {
             self.running_intro = false;
