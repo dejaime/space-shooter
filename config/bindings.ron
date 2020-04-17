@@ -8,6 +8,7 @@
   },
   actions: {
     "pause": [ [Key(Escape)] ],
-    "toggle_fire": [[Key(Space)]],
+    "p1_toggle_fire": [[Key(Space)]],
+    "p2_toggle_fire": [[Key(Numpad0)]],
   },
 )
