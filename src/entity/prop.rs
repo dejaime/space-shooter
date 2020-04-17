@@ -37,7 +37,8 @@ pub fn spawn_prop(world: &mut World, scale: f32) -> Entity {
     transform.set_scale(Vector3::new(scale, scale, scale));
 
     let prop = Prop {
-        directional_speed: directional_speed
+        directional_speed: directional_speed,
+        rotational_speed: rng.gen_range(-10.0, 10.0)
     };
 
     let sprite = SpriteRender {
