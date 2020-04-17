@@ -7,3 +7,6 @@ pub use self::enemy_component::Enemy;
 
 pub mod ship_component;
 pub use self::ship_component::Ship;
+
+pub mod player_laser_component;
+pub use self::player_laser_component::PlayerLaser;
