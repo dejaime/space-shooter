@@ -49,7 +49,8 @@ fn main() -> amethyst::Result<()> {
             DjSystemDesc::new(|music: &mut audio::Music| music.music.next()),
             "dj_system",
             &[],
-        );
+        )
+        .with(system::PlayerMovementSystem, "player_movement_system", &["input_system"]);
     let mut game = Application::new(assets_dir, LoadingState {}, game_data)?;
     game.run();
 
