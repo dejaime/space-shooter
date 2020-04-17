@@ -12,12 +12,10 @@ use crate::graphics::get_spritesheet_handle;
 use rand::prelude::*;
 
 
-pub fn spawn_prop(world: &mut World) -> Entity {
-
-    let mut rng = thread_rng();
+pub fn spawn_prop(world: &mut World, rng: &mut ThreadRng) -> Entity {
 
     let is_asteroid = rand::random::<u8>() > 230;
-    let mut scale = rng.gen_range(0.1, 0.5);
+    let mut scale = rng.gen_range(0.1, 0.8);
 
     let (sprite_sheet_handle, sprite_number, directional_speed) = if is_asteroid {
         scale = rng.gen_range(0.3, 1.5);
@@ -35,12 +33,12 @@ pub fn spawn_prop(world: &mut World) -> Entity {
     };
 
     let mut transform = Transform::default();
-    transform.set_translation_xyz(rng.gen_range(-1000.0, 1000.0), 600.0, 0.0);
+    transform.set_translation_xyz(rng.gen_range(-1000.0, 1000.0), 550.0, 0.0);
     transform.set_scale(Vector3::new(scale, scale, scale));
 
     let prop = Prop {
         directional_speed: directional_speed,
-        rotational_speed: rng.gen_range(-10.0, 10.0)
+        rotational_speed: rng.gen_range(-3.0, 3.0)
     };
 
     let sprite = SpriteRender {
