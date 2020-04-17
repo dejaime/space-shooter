@@ -10,3 +10,6 @@ pub use self::ship_component::Ship;
 
 pub mod player_laser_component;
 pub use self::player_laser_component::PlayerLaser;
+
+pub mod prop_component;
+pub use self::prop_component::Prop;
