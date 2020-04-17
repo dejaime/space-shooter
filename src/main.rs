@@ -51,7 +51,7 @@ fn main() -> amethyst::Result<()> {
             &[],
         )
         .with(system::PlayerMovementSystem, "player_movement_system", &["input_system"])
-        .with(system::BackgroundPropSystem, "background_prop_system", &[])
+        .with(system::BackgroundPropSystem, "background_prop_system", &[]);
     let mut game = Application::new(assets_dir, LoadingState {}, game_data)?;
     game.run();
 
