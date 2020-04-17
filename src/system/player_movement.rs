@@ -6,6 +6,9 @@ use amethyst::input::{InputHandler, StringBindings};
 #[derive(SystemDesc)]
 pub struct PlayerMovementSystem;
 
+use crate::component::Player;
+use crate::component::PlayerSeat;
+
 impl<'s> System<'s> for PlayerMovementSystem {
     type SystemData = (
         WriteStorage<'s, Transform>,
