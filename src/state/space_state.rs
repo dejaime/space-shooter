@@ -113,12 +113,6 @@ impl SimpleState for SpaceState {
                         let mut prop_counter = data.world.fetch_mut::<PropCounter>();
                         prop_counter.active_props_count += 1;
                         prop_counter.total_spawned_props += 1;
-                        println!(
-                            "FPS: {:.2} | Props: \t[Active \t{} \tTotal \t{}",
-                            120.0 / frame_times,
-                            prop_counter.active_props_count,
-                            prop_counter.total_spawned_props
-                        );
                     }
                     spawn_prop(data.world, &mut self.rng);
                     self.spawn_prop_timer
