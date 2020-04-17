@@ -26,6 +26,7 @@ impl<'s> System<'s> for PlayerMovementSystem {
 
     fn run(&mut self, (mut transforms, players, ships, input, time): Self::SystemData) {
         for (player, ship, transform) in (&players, &ships, &mut transforms).join() {
+
             let (horizontal_movement, vertical_movement) = match player.seat {
                 PlayerSeat::P1 => (
                     input.axis_value("p1_horizontal").unwrap_or(0.0),
@@ -36,9 +37,9 @@ impl<'s> System<'s> for PlayerMovementSystem {
                     input.axis_value("p2_vertical").unwrap_or(0.0),
                 ),
             };
-            
+
             if horizontal_movement * horizontal_movement < 0.1 && vertical_movement * vertical_movement < 0.1 {
-                return;
+                continue;
             }
 
             //TODO: Move
