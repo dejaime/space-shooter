@@ -42,7 +42,7 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
         .with(Player{seat: player_seat, ..Default::default()})
         .with(Ship {
             radius: 0.0,
-            velocity: 0.0,
+            speed: 200.0,
         })
         .with(local_transform)
         .with(SpriteRender {
