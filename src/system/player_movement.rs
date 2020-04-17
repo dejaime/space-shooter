@@ -19,7 +19,7 @@ impl<'s> System<'s> for PlayerMovementSystem {
                 PlayerSeat::P1 => (input.axis_value("p1_horizontal"), input.axis_value("p1_vertical")),
                 PlayerSeat::P2 => (input.axis_value("p2_horizontal"), input.axis_value("p2_vertical")),
             };
-            println!("{} {}", horizontal_movement, vertical_movement);
+            println!("{:?} {:?}", horizontal_movement, vertical_movement);
             //TODO: Move
         }
     }
