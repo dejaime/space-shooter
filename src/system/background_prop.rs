@@ -1,6 +1,6 @@
 use amethyst::{
     core::{
-        math::{Vector2, Vector3},
+        math::{Vector3},
         timing::Time,
         Transform,
     },
@@ -22,8 +22,11 @@ impl<'s> System<'s> for BackgroundPropSystem {
     );
 
     fn run(&mut self, (entities, mut transforms, props, time): Self::SystemData) {
+        for (prop_entity, prop, transform) in (&*entities, &props, &mut transforms).join() {
         for (entity, prop, transform) in (&*entities, &props, &mut transforms).join() {
-            
+
+            transform.prepend_translation(Vector3::new(prop.directional_speed.x, prop.directional_speed.y, 0.0));
+            transform.prepend_rotation_z_axis(prop.rotational_speed * time.delta_seconds());
         }
     }
 }
