@@ -8,5 +8,6 @@
   },
   actions: {
     "pause": [ [Key(Escape)] ],
+    "toggle_fire": [[Key(Space)]],
   },
 )
