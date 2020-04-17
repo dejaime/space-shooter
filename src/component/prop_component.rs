@@ -1,7 +1,9 @@
-use amethyst::ecs::prelude::{Component, NullStorage};
+use amethyst::{ecs::prelude::{Component, VecStorage}, core::math::Vector2};
 
-pub struct Prop {}
+pub struct Prop {
+    pub directional_speed: Vector2<f32>,
+}
 
 impl Component for Prop {
-    type Storage = NullStorage<Self>;
+    type Storage = VecStorage<Self>;
 }
