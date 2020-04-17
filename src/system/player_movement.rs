@@ -13,10 +13,10 @@ use crate::component::Player;
 use crate::component::PlayerSeat;
 use crate::component::Ship;
 
-const Y_MAX: f32 = 520.0;
-const Y_MIN: f32 = -520.0;
-const X_MAX: f32 = 940.0;
-const X_MIN: f32 = -940.0;
+const Y_MAX: f32 = 400.0;
+const Y_MIN: f32 = -400.0;
+const X_MAX: f32 = 800.0;
+const X_MIN: f32 = -800.0;
 
 impl<'s> System<'s> for PlayerMovementSystem {
     type SystemData = (
