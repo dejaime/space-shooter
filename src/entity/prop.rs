@@ -17,24 +17,24 @@ pub fn spawn_prop(world: &mut World) -> Entity {
     let mut rng = thread_rng();
 
     let is_asteroid = rand::random::<u8>() > 230;
-    let scale = rng.gen_range(0.1, 1.0);
+    let scale = rng.gen_range(0.1, 0.5);
 
     let (sprite_sheet_handle, sprite_number, directional_speed) = if is_asteroid {
         (
             get_spritesheet_handle(world, "asteroid"),
-            (rand::random::<u8>() % 4) as usize,
-            Vector2::new((2 - rand::random::<u8>() % 4) as f32, -1.0 * scale)
+            rng.gen_range(0, 4) as usize,
+            Vector2::new(rng.gen_range(-2.0, 2.0), -100.0 * scale)
         )
     } else {
         (
             get_spritesheet_handle(world, "proton"),
-            (rand::random::<u8>() % 3) as usize,
+            rng.gen_range(0, 3) as usize,
             Vector2::new(0.0, -1.0 * scale)
         )
     };
 
     let mut transform = Transform::default();
-    transform.set_translation_xyz(rng.gen_range(-1000.0, 1000.0), 600.0, 10.0);
+    transform.set_translation_xyz(rng.gen_range(-1000.0, 1000.0), 600.0, 0.0);
     transform.set_scale(Vector3::new(scale, scale, scale));
 
     let prop = Prop {
