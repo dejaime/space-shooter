@@ -34,9 +34,6 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
         0.0,
     ));
 
-    world.register::<Ship>();
-    world.register::<Player>();
-
     world
         .create_entity()
         .with(Player{seat: player_seat, ..Default::default()})
