@@ -12,14 +12,13 @@ use amethyst::{
 };
 
 mod state;
-use state::LoadingState;
-
 mod audio;
-
 mod graphics;
-
 mod entity;
 mod component;
+mod system;
+
+use state::LoadingState;
 
 fn main() -> amethyst::Result<()> {
     amethyst::start_logger(Default::default());
