@@ -22,7 +22,7 @@ pub struct SpaceState {
     pub player_one_kills: u32,
     pub player_two_kills: u32,
 
-    pub open_menu_timer: Option<f32>,
+    pub spawn_prop_timer: Option<f32>,
 }
 
 impl SimpleState for SpaceState {
@@ -45,7 +45,7 @@ impl SimpleState for SpaceState {
         self.player_one_kills = 0;
         self.player_two_kills = 0;
 
-        self.open_menu_timer.replace(1.0);
+        self.spawn_prop_timer.replace(1.0);
 
 
         spawn_player_ship(data.world, false);
@@ -53,13 +53,13 @@ impl SimpleState for SpaceState {
     }
 
     fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
-        if let Some(mut timer) = self.open_menu_timer.take() {
+        if let Some(mut timer) = self.spawn_prop_timer.take() {
             timer -= data.world.fetch::<Time>().delta_seconds();
             if timer <= 0.0 {
                 // Do it
             } else {
                 // Timer is not expired yet, putting it back
-                self.open_menu_timer.replace(timer);
+                self.spawn_prop_timer.replace(timer);
             }
         }
         Trans::None
