@@ -1,6 +1,6 @@
-use amethyst::core::{Transform, SystemDesc};
+use amethyst::core::{Transform, math::Vector3};
 use amethyst::derive::SystemDesc;
-use amethyst::ecs::{Join, Read, ReadStorage, System, SystemData, World, WriteStorage};
+use amethyst::ecs::{Join, Read, ReadStorage, System, SystemData, WriteStorage};
 use amethyst::input::{InputHandler, StringBindings};
 
 #[derive(SystemDesc)]
