@@ -7,7 +7,7 @@ This is still a work in progress
 To run the game, run the following command, which defaults to the `vulkan` graphics backend:
 
 ```bash
-cargo run
+cargo run --release
 ```
 
 ### License
