@@ -46,11 +46,10 @@ impl<'s> System<'s> for PlayerMovementSystem {
                 * ship.speed
                 * time.delta_seconds();
 
-            println!("{:?} || {:?}", transform.translation(), direction);
+            println!("{:?} || {:?} || {:?}", transform.translation(), direction, ((transform.translation().x + direction.x).min(X_MIN).max(X_MAX), (transform.translation().y + direction.y).min(Y_MIN).max(Y_MAX)));
 
-            transform.move_right(direction.x);
-            transform.move_up(direction.y);
-
+            transform.set_translation_x((transform.translation().x + direction.x).min(X_MAX).max(X_MIN));
+            transform.set_translation_y((transform.translation().y + direction.y).min(Y_MAX).max(Y_MIN));
         }
     }
 }
