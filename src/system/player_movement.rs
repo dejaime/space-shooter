@@ -36,7 +36,7 @@ impl<'s> System<'s> for PlayerMovementSystem {
                     input.axis_value("p2_vertical").unwrap_or(0.0),
                 ),
             };
-
+            
             if horizontal_movement * horizontal_movement < 0.1 && vertical_movement * vertical_movement < 0.1 {
                 return;
             }
