@@ -11,7 +11,7 @@ use crate::component::{
 };
 use crate::graphics::get_spritesheet_handle;
 
-const SHIP_COLLISION_RADIUS: f32 = 32.0;
+const _SHIP_COLLISION_RADIUS: f32 = 32.0;
 const SHIP_SPEED: f32 = 400.0;
 
 pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
