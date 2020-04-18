@@ -1,15 +1,16 @@
 use amethyst::{
     ecs::prelude::{Component, VecStorage},
-    core::math::Vector2,
+    core::math::Vector3,
 };
 
 use crate::component::player_component::PlayerSeat;
 
 #[derive(Debug)]
 pub struct Laser {
-    pub directional_speed: Vector2<f32>,
-    pub directional_acceleration: Vector2<f32>,
-    pub directional_torque: Vector2<f32>,
+    pub directional_speed: Vector3<f32>,
+    pub directional_acceleration: Vector3<f32>,
+    pub directional_torque: Vector3<f32>,
+    pub rotational_speed: Vector3<f32>,
     pub radius: f32,
     pub destroy_on_hit: bool,
 }
