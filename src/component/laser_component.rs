@@ -3,8 +3,6 @@ use amethyst::{
     core::math::Vector3,
 };
 
-use crate::component::player_component::PlayerSeat;
-
 #[derive(Debug)]
 pub struct Laser {
     pub directional_speed: Vector3<f32>,
