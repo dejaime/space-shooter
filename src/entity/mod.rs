@@ -5,3 +5,6 @@ pub mod enemy_ship;
 
 pub mod prop;
 pub use self::prop::spawn_prop;
+
+pub mod laser;
+pub use self::laser::spawn_laser;
