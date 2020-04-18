@@ -4,21 +4,27 @@ use amethyst::{
     prelude::*,
     renderer::SpriteRender,
 };
-use crate::graphics::get_spritesheet_handle;
 
-pub fn spawn_laser(world: &mut World, is_player: bool) -> Entity {
+use crate::graphics::get_spritesheet_handle;
+use crate::weapon::WeaponType;
+use crate::component::laser_component::MatchWeaponComponent;
+
+pub fn spawn_laser(world: &mut World, weapon_type: WeaponType) -> Entity {
     
     let sprite_sheet_handle = get_spritesheet_handle(world, "proton");
 
     let mut local_transform = Transform::default();
     local_transform.set_translation(Vector3::new(0.0, 0.0, 0.0));
 
-    world
+    let entity_builder = world
         .create_entity()
         .with(local_transform)
         .with(SpriteRender {
             sprite_sheet: sprite_sheet_handle,
             sprite_number: 0,
-        })
-        .build()
+        });
+
+    let weapon_component = MatchWeaponComponent (weapon_type);
+    
+    return entity_builder.with(weapon_component).build();
 }
