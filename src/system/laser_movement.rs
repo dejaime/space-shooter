@@ -5,11 +5,11 @@ use amethyst::{
 };
 
 #[derive(SystemDesc)]
-pub struct LaserSystem;
+pub struct LaserMovementSystem;
 
 use crate::component::laser_component::Laser;
 
-impl<'s> System<'s> for LaserSystem {
+impl<'s> System<'s> for LaserMovementSystem {
     type SystemData = (
         Entities<'s>,
         WriteStorage<'s, Transform>,
