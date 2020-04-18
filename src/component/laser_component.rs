@@ -8,7 +8,7 @@ pub struct Laser {
     pub directional_speed: Vector3<f32>,
     pub directional_acceleration: Vector3<f32>,
     pub directional_torque: Vector3<f32>,
-    pub rotational_speed: Vector3<f32>,
+    pub rotational_radian_speed: f32,
     pub radius: f32,
     pub destroy_on_hit: bool,
 }
