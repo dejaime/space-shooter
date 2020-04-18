@@ -17,6 +17,7 @@ mod entity;
 mod graphics;
 mod state;
 mod system;
+mod weapon;
 
 use state::LoadingState;
 
