@@ -33,8 +33,9 @@ impl SimpleState for LoadingState {
 
 fn initialise_camera(world: &mut World) {
     let (width, height) = {
-        let screen_dimensions = world.read_resource::<ScreenDimensions>();
-        (screen_dimensions.width(), screen_dimensions.height())
+        // let screen_dimensions = world.read_resource::<ScreenDimensions>();
+        // (screen_dimensions.width(), screen_dimensions.height())
+        (1920.0, 1080.0)
     };
 
     let mut camera_transform = Transform::default();
