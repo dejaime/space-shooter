@@ -2,7 +2,7 @@ use amethyst::prelude::*;
 
 use amethyst::{
     core::transform::Transform, renderer::camera::Camera,
-    window::ScreenDimensions, GameData, SimpleState, StateData,
+    GameData, SimpleState, StateData,
 };
 
 
