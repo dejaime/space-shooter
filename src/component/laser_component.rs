@@ -1,7 +1,10 @@
 use amethyst::{
     core::math::Vector3,
-    ecs::prelude::{Component, VecStorage},
+    ecs::prelude::{Component, VecStorage, NullStorage},
 };
+
+use crate::component::player_component::PlayerSeat;
+
 
 #[derive(Debug)]
 pub struct Laser {
@@ -14,5 +17,23 @@ pub struct Laser {
 }
 
 impl Component for Laser {
+    type Storage = VecStorage<Self>;
+}
+
+
+#[derive(Debug, Default)]
+pub struct EnemyLaser {}
+
+impl Component for EnemyLaser {
+    type Storage = NullStorage<Self>;
+}
+
+
+#[derive(Debug)]
+pub struct PlayerLaser {
+    pub seat: PlayerSeat,
+}
+
+impl Component for PlayerLaser {
     type Storage = VecStorage<Self>;
 }
