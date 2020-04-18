@@ -1,6 +1,7 @@
 use amethyst::{
     audio::{AudioBundle, DjSystemDesc},
     core::transform::TransformBundle,
+    input::{InputBundle, StringBindings},
     prelude::*,
     renderer::{
         plugins::{RenderFlat2D, RenderToWindow},
@@ -8,14 +9,13 @@ use amethyst::{
         RenderingBundle,
     },
     utils::application_root_dir,
-    input::{InputBundle, StringBindings},
 };
 
-mod state;
 mod audio;
-mod graphics;
-mod entity;
 mod component;
+mod entity;
+mod graphics;
+mod state;
 mod system;
 
 use state::LoadingState;
@@ -30,8 +30,8 @@ fn main() -> amethyst::Result<()> {
     let display_config_path = config_dir.join("display.ron");
     let binding_path = app_root.join("config").join("bindings.ron");
 
-    let input_bundle = InputBundle::<StringBindings>::new()
-        .with_bindings_from_file(binding_path)?;
+    let input_bundle =
+        InputBundle::<StringBindings>::new().with_bindings_from_file(binding_path)?;
 
     let game_data = GameDataBuilder::default()
         .with_bundle(
@@ -50,7 +50,11 @@ fn main() -> amethyst::Result<()> {
             "dj_system",
             &[],
         )
-        .with(system::PlayerMovementSystem, "player_movement_system", &["input_system"])
+        .with(
+            system::PlayerMovementSystem,
+            "player_movement_system",
+            &["input_system"],
+        )
         .with(system::BackgroundPropSystem, "background_prop_system", &[]);
     let mut game = Application::new(assets_dir, LoadingState {}, game_data)?;
     game.run();

@@ -1,7 +1,4 @@
-use amethyst::{
-    core::timing::Time,
-    prelude::*,
-};
+use amethyst::{core::timing::Time, prelude::*};
 
 use crate::entity::{player_ship::spawn_player_ship, prop::spawn_prop};
 
@@ -100,8 +97,7 @@ impl SimpleState for SpaceState {
                         prop_counter.total_spawned_props += 1;
                     }
                     spawn_prop(data.world, &mut self.rng);
-                    self.spawn_prop_timer
-                        .replace(self.rng.gen_range(0.01, 0.3));
+                    self.spawn_prop_timer.replace(self.rng.gen_range(0.01, 0.3));
                 } else {
                     self.spawn_prop_timer.replace(timer);
                 }

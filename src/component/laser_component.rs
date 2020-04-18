@@ -1,6 +1,6 @@
 use amethyst::{
-    ecs::prelude::{Component, VecStorage},
     core::math::Vector3,
+    ecs::prelude::{Component, VecStorage},
 };
 
 #[derive(Debug)]

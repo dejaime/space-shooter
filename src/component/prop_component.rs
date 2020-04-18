@@ -1,8 +1,11 @@
-use amethyst::{ecs::prelude::{Component, VecStorage}, core::math::Vector2};
+use amethyst::{
+    core::math::Vector2,
+    ecs::prelude::{Component, VecStorage},
+};
 
 pub struct Prop {
     pub directional_speed: Vector2<f32>,
-    pub rotational_speed: f32
+    pub rotational_speed: f32,
 }
 
 impl Component for Prop {

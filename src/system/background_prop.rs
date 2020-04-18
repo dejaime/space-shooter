@@ -1,7 +1,7 @@
 use amethyst::{
     core::{math::Vector3, timing::Time, Transform},
     derive::SystemDesc,
-    ecs::{Write, Entities, Join, Read, ReadStorage, System, SystemData, WriteStorage},
+    ecs::{Entities, Join, Read, ReadStorage, System, SystemData, Write, WriteStorage},
 };
 
 use crate::state::space_state::PropCounter;

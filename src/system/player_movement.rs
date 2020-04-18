@@ -1,5 +1,9 @@
 use amethyst::{
-    core::{math::{Vector2, Vector3}, timing::Time, Transform},
+    core::{
+        math::{Vector2, Vector3},
+        timing::Time,
+        Transform,
+    },
     derive::SystemDesc,
     ecs::{Join, Read, ReadStorage, System, SystemData, WriteStorage},
     input::{InputHandler, StringBindings},
@@ -54,7 +58,6 @@ impl<'s> System<'s> for PlayerMovementSystem {
             }
 
             let direction = Vector2::new(horizontal_movement, vertical_movement).normalize();
-            
             //This entire if block serves to decide which sprite to render (flat, turning, strong turning)
             if direction.x * direction.x > 0.3 {
                 if direction.x * direction.x > 0.7 {
