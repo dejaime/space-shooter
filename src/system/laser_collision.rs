@@ -21,6 +21,6 @@ impl<'s> System<'s> for LaserMovementSystem {
     );
 
     fn run(&mut self, (entities, transforms, lasers): Self::SystemData) {
-        
+        //TODO: collision
     }
 }
