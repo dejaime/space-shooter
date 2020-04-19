@@ -4,7 +4,7 @@ use amethyst::{
 };
 
 use crate::component::player_component::PlayerSeat;
-
+use crate::weapon::*;
 
 #[derive(Debug)]
 pub struct Laser {
@@ -36,4 +36,18 @@ pub struct PlayerLaser {
 
 impl Component for PlayerLaser {
     type Storage = VecStorage<Self>;
+}
+
+pub fn MatchWeaponComponent (weapon_type: WeaponType) -> Laser {
+    
+    let default_laser = Laser {
+        directional_speed: Vector3::new(0.0, -100.0, 0.0),
+        directional_acceleration: Vector3::new(0.0, -100.0, 0.0),
+        directional_torque: Vector3::new(0.0, -100.0, 0.0),
+        rotational_radian_speed: 0.0,
+        radius: 0.0,
+        destroy_on_hit: true,
+    };
+
+    default_laser
 }
