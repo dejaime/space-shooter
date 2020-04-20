@@ -16,4 +16,4 @@ pub use self::laser_component::PlayerLaser;
 pub mod prop_component;
 pub use self::prop_component::Prop;
 
-pub mod weapon_type;
+pub mod laser_type;

@@ -3,7 +3,7 @@ use amethyst::{
     ecs::prelude::{Component, NullStorage, VecStorage},
 };
 
-use super::weapon_type::*;
+use super::laser_type::*;
 use crate::component::player_component::PlayerSeat;
 
 #[derive(Debug)]
@@ -36,7 +36,7 @@ impl Component for PlayerLaser {
     type Storage = VecStorage<Self>;
 }
 
-pub fn MatchWeaponComponent(weapon_type: WeaponType) -> Laser {
+pub fn MatchWeaponComponent(weapon_type: LaserType) -> Laser {
 
     let default_laser = Laser {
         directional_speed: Vector3::new(0.0, 10.0, 0.0),
@@ -48,7 +48,7 @@ pub fn MatchWeaponComponent(weapon_type: WeaponType) -> Laser {
     };
 
     let component = match weapon_type {
-        WeaponType::Player(sub_type) => match sub_type {
+        LaserType::Player(sub_type) => match sub_type {
             Simple => {
                 Laser {
                     directional_speed: Vector3::new(0.0, -100.0, 0.0),
@@ -62,14 +62,14 @@ pub fn MatchWeaponComponent(weapon_type: WeaponType) -> Laser {
             Fast => {default_laser}
             Arc => {default_laser}
         },
-        WeaponType::Enemy(sub_type) => match sub_type {
+        LaserType::Enemy(sub_type) => match sub_type {
             Simple => {default_laser}
             Fast => {default_laser}
             Arc => {default_laser}
             ZigZag => {default_laser}
             BigSlow => {default_laser}
         },
-        WeaponType::Boss(sub_type) => match sub_type {
+        LaserType::Boss(sub_type) => match sub_type {
             Directional => {default_laser}
             Homing => {default_laser}
             DoubleSwipe => {default_laser}

@@ -1,10 +1,10 @@
-pub enum PlayerWeapon {
+pub enum PlayerLaser {
     Simple,
     Fast,
     Arc,
 }
 
-pub enum EnemyWeapon {
+pub enum EnemyLaser {
     Simple,
     Fast,
     Arc,
@@ -12,7 +12,7 @@ pub enum EnemyWeapon {
     BigSlow,
 }
 
-pub enum BossWeapon {
+pub enum BossLaser {
     Directional,
     Homing,
     DoubleSwipe,
@@ -21,8 +21,8 @@ pub enum BossWeapon {
 
 }
 
-pub enum WeaponType {
-    Player(PlayerWeapon),
-    Enemy(EnemyWeapon),
-    Boss(BossWeapon),
+pub enum LaserType {
+    Player(PlayerLaser),
+    Enemy(EnemyLaser),
+    Boss(BossLaser),
 }
