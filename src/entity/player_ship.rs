@@ -8,6 +8,8 @@ use amethyst::{
 use crate::component::{
     player_component::{Player, PlayerSeat},
     ship_component::Ship,
+    weapon_component::Weapon,
+    weapon_type::*,
 };
 use crate::graphics::get_spritesheet_handle;
 
@@ -42,6 +44,11 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
         .with(SpriteRender {
             sprite_sheet: sprite_sheet_handle,
             sprite_number: 0,
+        })
+        .with(Weapon {
+            weapon_type: WeaponType::Player(PlayerWeapon::Simple),
+            next_shot_time: 0.0,
+            cooldown: 0.05,
         })
         .build()
 }
