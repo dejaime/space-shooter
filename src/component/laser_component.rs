@@ -23,6 +23,7 @@ impl Component for Laser {
 }
 
 pub fn LaserFromWeaponType(weapon_type: WeaponType) -> Laser {
+    
     let default_laser = Laser {
         owner_seat: PlayerSeat::NonPlayer,
         weapon_type: WeaponType::Enemy(EnemyWeapon::Simple),
@@ -39,14 +40,23 @@ pub fn LaserFromWeaponType(weapon_type: WeaponType) -> Laser {
             Simple => Laser {
                 weapon_type: weapon_type,
                 owner_seat: PlayerSeat::NonPlayer,
-                directional_speed: Vector3::new(0.0, 700.0, 0.0),
-                directional_acceleration: Vector3::new(0.0, 500.0, 0.0),
+                directional_speed: Vector3::new(0.0, 400.0, 0.0),
+                directional_acceleration: Vector3::new(0.0, 1000.0, 0.0),
                 directional_torque: Vector3::new(0.0, 100.0, 0.0),
                 rotational_radian_speed: 0.0,
                 radius: 10.0,
                 destroy_on_hit: true,
             },
-            Fast => default_laser,
+            Fast => Laser {
+                weapon_type: weapon_type,
+                owner_seat: PlayerSeat::NonPlayer,
+                directional_speed: Vector3::new(0.0, 1000.0, 0.0),
+                directional_acceleration: Vector3::new(0.0, 1000.0, 0.0),
+                directional_torque: Vector3::new(0.0, 0.0, 0.0),
+                rotational_radian_speed: 0.0,
+                radius: 10.0,
+                destroy_on_hit: true,
+            },
             Arc => default_laser,
         },
         WeaponType::Enemy(sub_type) => match sub_type {
