@@ -17,3 +17,4 @@ pub mod prop_component;
 pub use self::prop_component::Prop;
 
 pub mod laser_type;
+pub use self::laser_type::*;

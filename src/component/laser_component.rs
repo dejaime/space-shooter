@@ -3,7 +3,7 @@ use amethyst::{
     ecs::prelude::{Component, NullStorage, VecStorage},
 };
 
-use super::laser_type::*;
+use super::laser_type::LaserType;
 use crate::component::player_component::PlayerSeat;
 
 #[derive(Debug)]
