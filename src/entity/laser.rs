@@ -30,7 +30,7 @@ pub fn spawn_laser(
             WeaponType::Player(sub_type) => match sub_type {
                 PlayerWeapon::Simple(_) => "laser",
                 PlayerWeapon::Fast(_) => "minigun",
-                _ => "proton",
+                PlayerWeapon::Arc(_) => "proton",
             },
             _ => "proton",
         };
