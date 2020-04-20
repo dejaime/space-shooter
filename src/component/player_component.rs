@@ -1,7 +1,8 @@
 use amethyst::ecs::prelude::{Component, VecStorage};
 
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 pub enum PlayerSeat {
+    NonPlayer,
     P1,
     P2,
 }
@@ -19,7 +20,7 @@ impl Component for Player {
 impl Default for Player {
     fn default() -> Self {
         Player {
-            seat: PlayerSeat::P1,
+            seat: PlayerSeat::NonPlayer,
             hit_invincibility_timer: 0.0,
         }
     }
