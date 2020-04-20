@@ -6,7 +6,7 @@ use amethyst::{
 };
 
 use crate::graphics::get_spritesheet_handle;
-use crate::component::weapon::WeaponType;
+use crate::component::weapon_type::WeaponType;
 use crate::component::laser_component::MatchWeaponComponent;
 
 pub fn spawn_laser(world: &mut World, weapon_type: WeaponType) -> Entity {
