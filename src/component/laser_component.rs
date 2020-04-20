@@ -22,9 +22,9 @@ impl Component for Laser {
     type Storage = VecStorage<Self>;
 }
 
-pub fn LaserFromWeaponType(weapon_type: WeaponType) -> Laser {
-    
-    let default_laser = Laser {
+pub fn LaserFromWeaponType(weapon_type: WeaponType) -> Vec<Laser> {
+
+    let default_laser = vec![Laser {
         owner_seat: PlayerSeat::NonPlayer,
         weapon_type: WeaponType::Enemy(EnemyWeapon::Simple),
         directional_speed: Vector3::new(0.0, 10.0, 0.0),
@@ -33,11 +33,11 @@ pub fn LaserFromWeaponType(weapon_type: WeaponType) -> Laser {
         rotational_radian_speed: 0.0,
         radius: 10.0,
         destroy_on_hit: true,
-    };
+    }];
 
-    let component = match weapon_type {
+    let laser_vec = match weapon_type {
         WeaponType::Player(sub_type) => match sub_type {
-            Simple => Laser {
+            Simple => vec![Laser {
                 weapon_type: weapon_type,
                 owner_seat: PlayerSeat::NonPlayer,
                 directional_speed: Vector3::new(0.0, 400.0, 0.0),
@@ -46,8 +46,8 @@ pub fn LaserFromWeaponType(weapon_type: WeaponType) -> Laser {
                 rotational_radian_speed: 0.0,
                 radius: 10.0,
                 destroy_on_hit: true,
-            },
-            Fast => Laser {
+            }],
+            Fast => vec![Laser {
                 weapon_type: weapon_type,
                 owner_seat: PlayerSeat::NonPlayer,
                 directional_speed: Vector3::new(0.0, 1000.0, 0.0),
@@ -56,7 +56,7 @@ pub fn LaserFromWeaponType(weapon_type: WeaponType) -> Laser {
                 rotational_radian_speed: 0.0,
                 radius: 10.0,
                 destroy_on_hit: true,
-            },
+            }],
             Arc => default_laser,
         },
         WeaponType::Enemy(sub_type) => match sub_type {
@@ -75,5 +75,5 @@ pub fn LaserFromWeaponType(weapon_type: WeaponType) -> Laser {
         },
     };
 
-    component
+    laser_vec
 }
