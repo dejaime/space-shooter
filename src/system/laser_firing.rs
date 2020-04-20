@@ -44,7 +44,7 @@ impl<'s> System<'s> for LaserFiringSystem {
                     &entities,
                     &lazy_update,
                     &sprite_sheet_holder,
-                    WeaponType::Player(PlayerWeapon::Simple(weapon.owner_seat)),
+                    weapon.weapon_type,
                     spawn_point,
                 );
             } else {
