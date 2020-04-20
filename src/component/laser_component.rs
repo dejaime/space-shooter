@@ -22,7 +22,7 @@ impl Component for Laser {
     type Storage = VecStorage<Self>;
 }
 
-pub fn LaserFromWeaponType(weapon_type: WeaponType) -> Vec<Laser> {
+pub fn LaserVectorFromWeaponType(weapon_type: WeaponType) -> Vec<Laser> {
 
     let default_laser = vec![Laser {
         owner_seat: PlayerSeat::NonPlayer,
