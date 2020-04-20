@@ -1,7 +1,7 @@
 use amethyst::{
-    core::{timing::Time, Transform},
+    core::Transform,
     derive::SystemDesc,
-    ecs::{Entities, Join, Read, System, SystemData, ReadStorage},
+    ecs::{Entities, ReadStorage, System, SystemData},
 };
 
 #[derive(SystemDesc)]
@@ -15,10 +15,10 @@ impl<'s> System<'s> for LaserCollisionSystem {
         Entities<'s>,
         ReadStorage<'s, Transform>,
         ReadStorage<'s, Laser>,
-        ReadStorage<'s, Ship>
+        ReadStorage<'s, Ship>,
     );
 
-    fn run(&mut self, (entities, transforms, lasers, ships): Self::SystemData) {
+    fn run(&mut self, (_entities, _transforms, _lasers, _ships): Self::SystemData) {
         //TODO: Collide
     }
 }
