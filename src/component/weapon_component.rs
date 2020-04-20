@@ -7,7 +7,7 @@ use crate::component::weapon_type::WeaponType;
 #[derive(Debug)]
 pub struct Weapon {
     pub weapon_type: WeaponType,
-    pub last_shot_time: f32,
+    pub next_shot_time: f32,
     pub cooldown: f32,
 }
 
