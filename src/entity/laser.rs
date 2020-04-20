@@ -1,30 +1,41 @@
 use amethyst::{
     core::{math::Vector3, transform::Transform},
-    ecs::prelude::{Entity, World, WorldExt},
-    prelude::*,
-    renderer::SpriteRender,
+    ecs::{Entities, LazyUpdate},
+    renderer::{SpriteRender},
 };
 
-use crate::graphics::get_spritesheet_handle;
-use crate::component::laser_type::LaserType;
 use crate::component::laser_component::MatchWeaponComponent;
+use crate::component::laser_type::LaserType;
+use crate::graphics::{SpritesHolder};
 
-pub fn spawn_laser(world: &mut World, laser_type: LaserType) -> Entity {
-    
-    let sprite_sheet_handle = get_spritesheet_handle(world, "proton");
+pub fn spawn_laser(
+    entities: &Entities,
+    lazy_update: &LazyUpdate,
+    sprite_sheet_holder: &SpritesHolder,
+    laser_type: LaserType,
+    position: Vector3<f32>,
+) {
+    //let sprite_sheet_handle = get_spritesheet_handle(world, "proton");
 
     let mut local_transform = Transform::default();
-    local_transform.set_translation(Vector3::new(0.0, 0.0, 0.0));
-    
-    let weapon_component = MatchWeaponComponent (laser_type);
 
-    world
-        .create_entity()
-        .with(local_transform)
-        .with(SpriteRender {
-            sprite_sheet: sprite_sheet_handle,
+    local_transform.set_translation(position);
+
+    let weapon_component = MatchWeaponComponent(laser_type);
+
+    let laser_entity = entities.create();
+
+    lazy_update.insert(laser_entity, local_transform);
+    lazy_update.insert(
+        laser_entity,
+        SpriteRender {
+            sprite_sheet: sprite_sheet_holder
+                .sprite_map
+                .get("proton")
+                .unwrap()
+                .clone(),
             sprite_number: 0,
-        })
-        .with(weapon_component)
-        .build()
+        },
+    );
+    lazy_update.insert(laser_entity, weapon_component);
 }
