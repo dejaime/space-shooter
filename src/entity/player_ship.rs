@@ -46,7 +46,8 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
             sprite_number: 0,
         })
         .with(Weapon {
-            weapon_type: WeaponType::Player(PlayerWeapon::Simple),
+            owner_seat: player_seat,
+            weapon_type: WeaponType::Player(PlayerWeapon::Simple(player_seat)),
             next_shot_time: 0.0,
             cooldown: 0.05,
         })

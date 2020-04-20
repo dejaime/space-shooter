@@ -1,12 +1,13 @@
+use crate::component::PlayerSeat;
 
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 pub enum PlayerWeapon {
-    Simple,
-    Fast,
-    Arc,
+    Simple(PlayerSeat),
+    Fast(PlayerSeat),
+    Arc(PlayerSeat),
 }
 
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 pub enum EnemyWeapon {
     Simple,
     Fast,
@@ -15,7 +16,7 @@ pub enum EnemyWeapon {
     BigSlow,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 pub enum BossWeapon {
     Directional,
     Homing,
@@ -25,7 +26,7 @@ pub enum BossWeapon {
 
 }
 
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 pub enum WeaponType {
     Player(PlayerWeapon),
     Enemy(EnemyWeapon),
