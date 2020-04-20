@@ -3,6 +3,8 @@ use amethyst::{
     ecs::prelude::{Component, NullStorage, VecStorage},
 };
 
+use crate::component::weapon_type::WeaponType;
+
 #[derive(Debug)]
 pub struct Weapon {
     pub type: WeaponType,

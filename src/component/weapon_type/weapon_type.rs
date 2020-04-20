@@ -1,9 +1,12 @@
+
+#[derive(Debug)]
 pub enum PlayerWeapon {
     Simple,
     Fast,
     Arc,
 }
 
+#[derive(Debug)]
 pub enum EnemyWeapon {
     Simple,
     Fast,
@@ -12,6 +15,7 @@ pub enum EnemyWeapon {
     BigSlow,
 }
 
+#[derive(Debug)]
 pub enum BossWeapon {
     Directional,
     Homing,
@@ -21,6 +25,7 @@ pub enum BossWeapon {
 
 }
 
+#[derive(Debug)]
 pub enum WeaponType {
     Player(PlayerWeapon),
     Enemy(EnemyWeapon),

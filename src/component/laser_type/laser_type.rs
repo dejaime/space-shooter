@@ -1,9 +1,12 @@
+#[derive(Debug)]
 pub enum PlayerLaser {
     Simple,
     Fast,
     Arc,
 }
 
+
+#[derive(Debug)]
 pub enum EnemyLaser {
     Simple,
     Fast,
@@ -12,6 +15,8 @@ pub enum EnemyLaser {
     BigSlow,
 }
 
+
+#[derive(Debug)]
 pub enum BossLaser {
     Directional,
     Homing,
@@ -21,6 +26,8 @@ pub enum BossLaser {
 
 }
 
+
+#[derive(Debug)]
 pub enum LaserType {
     Player(PlayerLaser),
     Enemy(EnemyLaser),
