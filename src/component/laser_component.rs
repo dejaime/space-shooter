@@ -33,9 +33,9 @@ pub fn MatchWeaponComponent(weapon_type: LaserType) -> Laser {
     let component = match weapon_type {
         LaserType::Player(sub_type) => match sub_type {
             Simple => Laser {
-                directional_speed: Vector3::new(0.0, 10.0, 0.0),
-                directional_acceleration: Vector3::new(0.0, 0.1, 0.0),
-                directional_torque: Vector3::new(0.0, 0.1, 0.0),
+                directional_speed: Vector3::new(0.0, 500.0, 0.0),
+                directional_acceleration: Vector3::new(0.0, 500.0, 0.0),
+                directional_torque: Vector3::new(0.0, 100.0, 0.0),
                 rotational_radian_speed: 0.0,
                 radius: 10.0,
                 destroy_on_hit: true,
