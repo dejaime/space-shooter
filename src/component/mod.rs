@@ -15,9 +15,7 @@ pub mod laser_type;
 pub use self::laser_type::*;
 
 pub mod laser_component;
-pub use self::laser_component::EnemyLaser;
 pub use self::laser_component::Laser;
-pub use self::laser_component::PlayerLaser;
 
 pub mod weapon_type;
 pub use self::weapon_type::*;
