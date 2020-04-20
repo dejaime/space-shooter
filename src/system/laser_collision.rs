@@ -1,26 +1,24 @@
 use amethyst::{
     core::{timing::Time, Transform},
     derive::SystemDesc,
-    ecs::{Entities, Join, Read, System, SystemData, WriteStorage},
+    ecs::{Entities, Join, Read, System, SystemData, ReadStorage},
 };
 
 #[derive(SystemDesc)]
-pub struct LaserMovementSystem;
+pub struct LaserCollisionSystem;
 
 use crate::component::laser_component::Laser;
-use crate::component::player_laser_component::PlayerLaser;
-use crate::component::enemy_laser_component::EnemyLaser;
+use crate::component::ship_component::Ship;
 
-impl<'s> System<'s> for LaserMovementSystem {
+impl<'s> System<'s> for LaserCollisionSystem {
     type SystemData = (
         Entities<'s>,
         ReadStorage<'s, Transform>,
         ReadStorage<'s, Laser>,
-        ReadStorage<'s, PlayerLaser>,
-        ReadStorage<'s, EnemyLaser>,
+        ReadStorage<'s, Ship>
     );
 
-    fn run(&mut self, (entities, transforms, lasers): Self::SystemData) {
-        //TODO: collision
+    fn run(&mut self, (entities, transforms, lasers, ships): Self::SystemData) {
+        //TODO: Collide
     }
 }
