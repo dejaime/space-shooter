@@ -20,24 +20,7 @@ impl Component for Laser {
     type Storage = VecStorage<Self>;
 }
 
-#[derive(Debug, Default)]
-pub struct EnemyLaser {}
-
-impl Component for EnemyLaser {
-    type Storage = NullStorage<Self>;
-}
-
-#[derive(Debug)]
-pub struct PlayerLaser {
-    pub seat: PlayerSeat,
-}
-
-impl Component for PlayerLaser {
-    type Storage = VecStorage<Self>;
-}
-
 pub fn MatchWeaponComponent(weapon_type: LaserType) -> Laser {
-
     let default_laser = Laser {
         directional_speed: Vector3::new(0.0, 10.0, 0.0),
         directional_acceleration: Vector3::new(0.0, 0.1, 0.0),
