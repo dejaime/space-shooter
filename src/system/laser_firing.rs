@@ -19,6 +19,6 @@ impl<'s> System<'s> for LaserFiringSystem {
     );
 
     fn run(&mut self, (_entities, _transforms, mut _weapons, _time): Self::SystemData) {
-        //TODO: collision
+        //TODO: FIRE!
     }
 }
