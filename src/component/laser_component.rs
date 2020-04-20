@@ -22,7 +22,7 @@ impl Component for Laser {
     type Storage = VecStorage<Self>;
 }
 
-pub fn MatchWeaponType(weapon_type: WeaponType) -> Laser {
+pub fn LaserFromWeaponType(weapon_type: WeaponType) -> Laser {
     let default_laser = Laser {
         owner_seat: PlayerSeat::NonPlayer,
         weapon_type: WeaponType::Enemy(EnemyWeapon::Simple),

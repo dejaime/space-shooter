@@ -4,7 +4,7 @@ use amethyst::{
     renderer::{SpriteRender},
 };
 
-use crate::component::laser_component::MatchWeaponType;
+use crate::component::laser_component::LaserFromWeaponType;
 use crate::component::weapon_type::WeaponType;
 use crate::graphics::{SpritesHolder};
 
@@ -21,7 +21,7 @@ pub fn spawn_laser(
 
     local_transform.set_translation(position);
 
-    let weapon_component = MatchWeaponType(weapon_type);
+    let weapon_component = LaserFromWeaponType(weapon_type);
 
     let laser_entity = entities.create();
 
