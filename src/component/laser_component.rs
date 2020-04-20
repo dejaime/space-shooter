@@ -3,7 +3,7 @@ use amethyst::{
     ecs::prelude::{Component, NullStorage, VecStorage},
 };
 
-use super::weapon::*;
+use super::weapon_type::*;
 use crate::component::player_component::PlayerSeat;
 
 #[derive(Debug)]
