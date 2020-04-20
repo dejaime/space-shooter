@@ -3,7 +3,7 @@ use amethyst::{
     ecs::prelude::{Component, VecStorage},
 };
 
-use super::weapon_type::{WeaponType, EnemyWeapon};
+use super::weapon_type::{WeaponType, EnemyWeapon, PlayerWeapon};
 use crate::component::player_component::PlayerSeat;
 
 #[derive(Debug)]
@@ -22,7 +22,7 @@ impl Component for Laser {
     type Storage = VecStorage<Self>;
 }
 
-pub fn LaserVectorFromWeaponType(weapon_type: WeaponType) -> Vec<Laser> {
+pub fn laser_vector_from_weapon_type (weapon_type: WeaponType) -> Vec<Laser> {
 
     let default_laser = vec![Laser {
         owner_seat: PlayerSeat::NonPlayer,
@@ -37,19 +37,9 @@ pub fn LaserVectorFromWeaponType(weapon_type: WeaponType) -> Vec<Laser> {
 
     let laser_vec = match weapon_type {
         WeaponType::Player(sub_type) => match sub_type {
-            Simple => vec![Laser {
+            PlayerWeapon::Fast(seat) => vec![Laser {
                 weapon_type: weapon_type,
-                owner_seat: PlayerSeat::NonPlayer,
-                directional_speed: Vector3::new(0.0, 400.0, 0.0),
-                directional_acceleration: Vector3::new(0.0, 1000.0, 0.0),
-                directional_torque: Vector3::new(0.0, 100.0, 0.0),
-                rotational_radian_speed: 0.0,
-                radius: 10.0,
-                destroy_on_hit: true,
-            }],
-            Fast => vec![Laser {
-                weapon_type: weapon_type,
-                owner_seat: PlayerSeat::NonPlayer,
+                owner_seat: seat,
                 directional_speed: Vector3::new(0.0, 1000.0, 0.0),
                 directional_acceleration: Vector3::new(0.0, 1000.0, 0.0),
                 directional_torque: Vector3::new(0.0, 0.0, 0.0),
@@ -57,7 +47,26 @@ pub fn LaserVectorFromWeaponType(weapon_type: WeaponType) -> Vec<Laser> {
                 radius: 10.0,
                 destroy_on_hit: true,
             }],
-            Arc => default_laser,
+            PlayerWeapon::Simple(seat) => vec![Laser {
+                weapon_type: weapon_type,
+                owner_seat: seat,
+                directional_speed: Vector3::new(0.0, 400.0, 0.0),
+                directional_acceleration: Vector3::new(0.0, 100.0, 0.0),
+                directional_torque: Vector3::new(0.0, 100.0, 0.0),
+                rotational_radian_speed: 0.0,
+                radius: 10.0,
+                destroy_on_hit: true,
+            }],
+            PlayerWeapon::Arc(seat) => vec![Laser {
+                weapon_type: weapon_type,
+                owner_seat: seat,
+                directional_speed: Vector3::new(200.0, 0.0, 0.0),
+                directional_acceleration: Vector3::new(0.0, 1000.0, 0.0),
+                directional_torque: Vector3::new(0.0, 100.0, 0.0),
+                rotational_radian_speed: 0.0,
+                radius: 10.0,
+                destroy_on_hit: true,
+            }],
         },
         WeaponType::Enemy(sub_type) => match sub_type {
             Simple => default_laser,
