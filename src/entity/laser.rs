@@ -31,6 +31,7 @@ pub fn spawn_laser(
                 PlayerWeapon::Simple(_) => "laser",
                 PlayerWeapon::Fast(_) => "minigun",
                 PlayerWeapon::Arc(_) => "proton",
+                PlayerWeapon::V(_) => "proton",
             },
             _ => "proton",
         };

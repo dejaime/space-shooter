@@ -5,6 +5,7 @@ pub enum PlayerWeapon {
     Simple(PlayerSeat),
     Fast(PlayerSeat),
     Arc(PlayerSeat),
+    V(PlayerSeat),
 }
 
 #[derive(Debug, Copy, Clone)]
