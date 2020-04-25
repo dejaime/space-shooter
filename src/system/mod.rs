@@ -12,3 +12,6 @@ mod laser_firing;
 
 pub use self::laser_firing::LaserFiringSystem;
 mod laser_collision;
+
+pub use self::cling::ClingSystem;
+mod cling;
