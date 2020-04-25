@@ -19,3 +19,6 @@ pub use self::weapon_type::*;
 
 pub mod weapon_component;
 pub use self::weapon_component::Weapon;
+
+pub mod clingy_component;
+pub use self::clingy_component::ClingTo;
