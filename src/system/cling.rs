@@ -4,6 +4,8 @@ use amethyst::{
     ecs::{Entities, Join, Read, System, SystemData, ReadStorage, WriteStorage},
 };
 
+use crate::component::clingy_component::ClingTo;
+
 pub struct ClingSystem;
 
 impl<'a> System<'a> for ClingSystem {
@@ -15,8 +17,8 @@ impl<'a> System<'a> for ClingSystem {
 
     fn run(&mut self, (entity, target, transform): Self::SystemData) {
         for (entity, t) in (&*entity, &target).join() {
-            *transform.get_mut(entity).unwrap() = transform.get(t.target).cloned().unwrap() + t.offset;
-            //TODO: Apply speed when perfect_follor is false instead of instant teleport
+            //TODO: Apply speed when perfect_follow is false instead or move instantly
+            //          to whatever offset is configured
         }
     }
 }
