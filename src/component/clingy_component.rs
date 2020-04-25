@@ -1,3 +1,5 @@
+use amethyst::core::math::Vector3;
+
 #[derive(Component)]
 pub struct ClingTo {
     target: Entity,
