@@ -15,14 +15,12 @@ pub fn spawn_laser(
     weapon_type: WeaponType,
     position: Vector3<f32>,
 ) {
-    //let sprite_sheet_handle = get_spritesheet_handle(world, "proton");
-
-    let laser_vector = laser_vector_from_weapon_type(weapon_type);
+    let laser_vector = laser_vector_from_weapon_type(weapon_type, position);
 
     for laser in laser_vector {
         let mut local_transform = Transform::default();
 
-        local_transform.set_translation(position);
+        local_transform.set_translation(laser.initial_point);
 
         let laser_entity = entities.create();
 
