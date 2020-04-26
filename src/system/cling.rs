@@ -10,15 +10,24 @@ pub struct ClingSystem;
 
 impl<'a> System<'a> for ClingSystem {
     type SystemData = (
-        Entities<'a>,
         ReadStorage<'a, ClingTo>,
         WriteStorage<'a, Transform>,
     );
 
-    fn run(&mut self, (entity, target, transform): Self::SystemData) {
-        for (entity, t) in (&*entity, &target).join() {
-            //TODO: Apply speed when perfect_follow is false instead or move instantly
-            //          to whatever offset is configured
+    fn run(&mut self, (clingies, transforms): Self::SystemData) {
+        for (clingy, transform) in (&clingies, &transforms).join() {
+            /*  pub target: Entity,
+                pub offset: Vector3<f32>,
+                pub max_distance: f32,
+                pub speed: f32,
+                pub perfect_follow: bool,*/
+            
+            if clingy.perfect_follow {
+                //MOVE INSTANTLY
+                continue;
+            } else {
+                //APPLY SPEED
+            }
         }
     }
 }
