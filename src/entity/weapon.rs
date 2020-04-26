@@ -1,7 +1,5 @@
 use amethyst::{
     core::{
-        math::{Vector2, Vector3},
-        timing::Time,
         transform::{Parent, Transform},
     },
     ecs::prelude::{Entity, World},

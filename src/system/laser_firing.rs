@@ -8,7 +8,6 @@ use amethyst::{
 
 use crate::component::{
     weapon_component::Weapon,
-    weapon_type::{PlayerWeapon, WeaponType},
 };
 use crate::entity::laser::spawn_laser;
 use crate::graphics::SpritesHolder;
