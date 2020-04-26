@@ -21,13 +21,9 @@ impl<'a> System<'a> for ClingSystem {
                 pub max_distance: f32,
                 pub speed: f32,
                 pub perfect_follow: bool,*/
-            
-            if clingy.perfect_follow {
-                //MOVE INSTANTLY
-                continue;
-            } else {
+
                 //APPLY SPEED
-            }
+                continue;
         }
     }
 }
