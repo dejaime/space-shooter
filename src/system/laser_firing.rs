@@ -33,9 +33,6 @@ impl<'s> System<'s> for LaserFiringSystem {
         for (transform, weapon) in (&transforms, &mut weapons).join() {
             if weapon.next_shot_time <= 0.0 {
                 weapon.next_shot_time += weapon.cooldown;
-                //TODO: Test Weapon Type and create correct laser
-
-                println!("{:?}", transform.global_matrix());
 
                 let spawn_point = Vector3::new(
                     transform.global_matrix()[12],
