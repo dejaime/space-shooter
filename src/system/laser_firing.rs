@@ -35,9 +35,11 @@ impl<'s> System<'s> for LaserFiringSystem {
                 weapon.next_shot_time += weapon.cooldown;
                 //TODO: Test Weapon Type and create correct laser
 
+                println!("{:?}", transform.global_matrix());
+
                 let spawn_point = Vector3::new(
-                    transform.translation().x,
-                    transform.translation().y + 32.0,
+                    transform.global_matrix()[12],
+                    transform.global_matrix()[13] + 32.0,
                     0.01,
                 );
                 spawn_laser(
