@@ -3,7 +3,7 @@ use amethyst::{
     ecs::prelude::{Component, VecStorage},
 };
 
-use super::weapon_type::{EnemyWeapon, PlayerWeapon, WeaponType};
+use super::weapon_type::{BossWeapon, EnemyWeapon, PlayerWeapon, WeaponType};
 use crate::component::player_component::PlayerSeat;
 
 #[derive(Debug)]
@@ -135,18 +135,18 @@ pub fn laser_vector_from_weapon_type(
             ],
         },
         WeaponType::Enemy(sub_type) => match sub_type {
-            Simple => default_laser,
-            Fast => default_laser,
-            Arc => default_laser,
-            ZigZag => default_laser,
-            BigSlow => default_laser,
+            EnemyWeapon::Simple => default_laser,
+            EnemyWeapon::Fast => default_laser,
+            EnemyWeapon::Arc => default_laser,
+            EnemyWeapon::ZigZag => default_laser,
+            EnemyWeapon::BigSlow => default_laser,
         },
         WeaponType::Boss(sub_type) => match sub_type {
-            Directional => default_laser,
-            Homing => default_laser,
-            DoubleSwipe => default_laser,
-            Maze => default_laser,
-            Horizontal => default_laser,
+            BossWeapon::Directional => default_laser,
+            BossWeapon::Homing => default_laser,
+            BossWeapon::DoubleSwipe => default_laser,
+            BossWeapon::Maze => default_laser,
+            BossWeapon::Horizontal => default_laser,
         },
     };
 
