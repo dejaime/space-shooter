@@ -1,7 +1,9 @@
-use amethyst::ecs::prelude::{Component, VecStorage};
+use amethyst::ecs::prelude::{Component, NullStorage};
 
+
+#[derive(Default)]
 pub struct Enemy {}
 
 impl Component for Enemy {
-    type Storage = VecStorage<Self>;
+    type Storage = NullStorage<Self>;
 }
