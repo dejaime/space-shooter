@@ -1,6 +1,6 @@
 use amethyst::ecs::prelude::{Component, VecStorage};
 
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum PlayerSeat {
     NonPlayer,
     P1,
