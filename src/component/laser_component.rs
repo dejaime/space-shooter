@@ -5,6 +5,7 @@ use amethyst::{
 
 use super::weapon_type::{BossWeapon, EnemyWeapon, PlayerWeapon, WeaponType};
 use crate::component::player_component::PlayerSeat;
+use rand::prelude::*;
 
 #[derive(Debug)]
 pub struct Laser {
@@ -40,6 +41,9 @@ pub fn laser_vector_from_weapon_type(
         radius: 10.0,
         destroy_on_hit: true,
     }];
+
+    let mut rng = thread_rng();
+    let x_dir = rng.gen_range(-1.0, 1.0);
 
     let laser_vec = match weapon_type {
         WeaponType::Player(sub_type) => match sub_type {
@@ -135,7 +139,18 @@ pub fn laser_vector_from_weapon_type(
             ],
         },
         WeaponType::Enemy(sub_type) => match sub_type {
-            EnemyWeapon::Simple => default_laser,
+            EnemyWeapon::Simple => vec![Laser {
+                weapon_type: weapon_type,
+                initial_point: emit_point,
+                owner_seat: PlayerSeat::NonPlayer,
+                directional_speed: Vector3::new(x_dir * 100.0, -150.0, 0.0),
+                directional_acceleration: Vector3::new(x_dir * 50.0, -50.0, 0.0),
+                directional_torque: Vector3::new(0.0, 0.0, 0.0),
+                rotational_radian_speed: 0.0,
+                damage: 1.0,
+                radius: 10.0,
+                destroy_on_hit: true,
+            }],
             EnemyWeapon::Fast => default_laser,
             EnemyWeapon::Arc => default_laser,
             EnemyWeapon::ZigZag => default_laser,
