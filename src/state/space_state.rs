@@ -1,6 +1,8 @@
 use amethyst::{core::timing::Time, prelude::*};
 
-use crate::entity::{player_ship::spawn_player_ship, prop::spawn_prop};
+use crate::component::enemy_component::Enemy;
+
+use crate::entity::{player_ship::spawn_player_ship, prop::spawn_prop, enemy_ship::spawn_simple_enemy};
 
 use rand::prelude::*;
 
@@ -76,6 +78,9 @@ impl SimpleState for SpaceState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
         spawn_player_ship(data.world, false);
         spawn_player_ship(data.world, true);
+
+        data.world.register::<Enemy>();
+        spawn_simple_enemy(data.world);
 
         data.world.insert(PropCounter {
             ..Default::default()
