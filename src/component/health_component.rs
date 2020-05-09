@@ -4,6 +4,7 @@ pub struct EnemyHealth {
     pub health: f32,
     pub max_health: f32,
     pub shield: f32,
+    pub last_hit_time: f32,
 }
 
 impl Component for EnemyHealth {
@@ -25,6 +26,7 @@ impl Component for PlayerHealth {
 pub struct BossHealth {
     pub health: f32,
     pub max_health: f32,
+    pub last_hit_time: f32,
 }
 
 impl Component for BossHealth {
