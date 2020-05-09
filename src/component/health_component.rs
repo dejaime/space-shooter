@@ -1,34 +1,21 @@
 use amethyst::ecs::prelude::{Component, DenseVecStorage};
 
-pub struct EnemyHealth {
-    pub health: f32,
-    pub max_health: f32,
-    pub shield: f32,
-    pub last_hit_time: f32,
+#[derive(Debug, Copy, Clone, PartialEq)]
+pub enum HealthType {
+    Player,
+    Enemy,
+    Boss
 }
 
-impl Component for EnemyHealth {
-    type Storage = DenseVecStorage<Self>;
-}
-
-pub struct PlayerHealth {
+pub struct Health {
     pub health: f32,
     pub max_health: f32,
     pub shield: f32,
     pub lives: i32,
     pub last_hit_time: f32,
+    pub health_type: HealthType,
 }
 
-impl Component for PlayerHealth {
-    type Storage = DenseVecStorage<Self>;
-}
-
-pub struct BossHealth {
-    pub health: f32,
-    pub max_health: f32,
-    pub last_hit_time: f32,
-}
-
-impl Component for BossHealth {
+impl Component for Health {
     type Storage = DenseVecStorage<Self>;
 }
