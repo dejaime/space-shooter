@@ -26,37 +26,53 @@ impl<'s> System<'s> for LaserCollisionSystem {
     fn run(&mut self, (entities, transforms, lasers, ships, mut healths): Self::SystemData) {
         //For every ship
         for (ship_transform, ship, ship_health) in (&transforms, &ships, &mut healths).join() {
-            let ship_translation = ship_transform.translation();
-            let ship_radius_squared = ship.radius * ship.radius;
             //For every Laser
-            for (laser_entity, laser_transform, laser) in (&*entities, &transforms, &lasers).join() {
+            for (laser_entity, laser_transform, laser) in (&*entities, &transforms, &lasers).join()
+            {
                 if laser.owner_seat == PlayerSeat::NonPlayer
-                    && ship_health.health_type == HealthType::Player {
-                    let laser_translation = laser_transform.translation();
+                    && ship_health.health_type == HealthType::Player
+                {
+                    if is_colliding(ship_transform, ship, laser_transform, laser) {
+                        //HIT
 
-                    let x_distance_squared = (laser_translation.x - ship_translation.x) * (laser_translation.x - ship_translation.x);
-                    let y_distance_squared = (laser_translation.y - ship_translation.y) * (laser_translation.y - ship_translation.y);
-                    let distance_squared = x_distance_squared + y_distance_squared;
-
-                    if distance_squared < ship_radius_squared {
-                        // if laser.destroy_on_hit {
+                        if laser.destroy_on_hit {
                             let _ = entities.delete(laser_entity);
-                        // }
+                        }
                     }
-                } else if laser.owner_seat != PlayerSeat::NonPlayer && ship_health.health_type !=  HealthType::Player {
-                    let laser_translation = laser_transform.translation();
-
-                    let x_distance_squared = (laser_translation.x - ship_translation.x) * (laser_translation.x - ship_translation.x);
-                    let y_distance_squared = (laser_translation.y - ship_translation.y) * (laser_translation.y - ship_translation.y);
-                    let distance_squared = x_distance_squared + y_distance_squared;
-
-                    if distance_squared < ship_radius_squared {
-                        // if laser.destroy_on_hit {
+                } else if laser.owner_seat != PlayerSeat::NonPlayer
+                    && ship_health.health_type != HealthType::Player
+                {
+                    if is_colliding(ship_transform, ship, laser_transform, laser) {
+                        //HIT
+                        
+                        if laser.destroy_on_hit {
                             let _ = entities.delete(laser_entity);
-                        // }
+                        }
                     }
                 }
             }
         }
     }
+}
+
+fn is_colliding(
+    ship_transform: &Transform,
+    ship_component: &Ship,
+    laser_transform: &Transform,
+    laser_component: &Laser,
+) -> bool {
+    let ship_translation = ship_transform.translation();
+    let laser_translation = laser_transform.translation();
+
+    let current_distance_squared = (
+        (ship_translation.x - laser_translation.x) * (ship_translation.x - laser_translation.x),
+        (ship_translation.y - laser_translation.y) * (ship_translation.y - laser_translation.y),
+    );
+
+    let current_distance_squared: f32 = current_distance_squared.0 + current_distance_squared.1;
+
+    let min_collision_distance_squared = ship_component.radius * ship_component.radius
+        + laser_component.radius * laser_component.radius;
+    
+    current_distance_squared < min_collision_distance_squared
 }
