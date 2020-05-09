@@ -18,7 +18,7 @@ pub struct PlayerHealth {
     pub last_hit_time: f32,
 }
 
-impl Component for PlayerHealth, BossHealth {
+impl Component for PlayerHealth {
     type Storage = DenseVecStorage<Self>;
 }
 
@@ -27,6 +27,6 @@ pub struct BossHealth {
     pub max_health: f32,
 }
 
-// impl Component for  {
-//     type Storage = DenseVecStorage<Self>;
-// }
+impl Component for BossHealth {
+    type Storage = DenseVecStorage<Self>;
+}
