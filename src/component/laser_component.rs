@@ -147,7 +147,7 @@ pub fn laser_vector_from_weapon_type(
                 directional_acceleration: Vector3::new(x_dir * 50.0, -50.0, 0.0),
                 directional_torque: Vector3::new(0.0, 0.0, 0.0),
                 rotational_radian_speed: 0.0,
-                damage: 1.0,
+                damage: 10.0,
                 radius: 10.0,
                 destroy_on_hit: true,
             }],
