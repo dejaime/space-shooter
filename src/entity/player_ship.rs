@@ -59,7 +59,7 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
             speed: SHIP_SPEED,
         })
         .with(Health {
-            health: 0.0,
+            health: 100.0,
             max_health: 0.0,
             shield: 0.0,
             lives: 1,
