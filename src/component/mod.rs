@@ -22,3 +22,7 @@ pub use self::weapon_component::Weapon;
 
 pub mod clingy_component;
 pub use self::clingy_component::ClingTo;
+
+pub mod health_component;
+pub use self::health_component::Health;
+pub use self::health_component::HealthType;
