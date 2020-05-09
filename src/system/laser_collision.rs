@@ -48,6 +48,9 @@ impl<'s> System<'s> for LaserCollisionSystem {
                     if is_colliding(ship_transform, ship, laser_transform, laser) {
                         //HIT
 
+                        ship_health.health -= laser.damage;
+                        ship_health.time_since_last_hit = 0.0;
+
                         if laser.destroy_on_hit {
                             let _ = entities.delete(laser_entity);
                         }
