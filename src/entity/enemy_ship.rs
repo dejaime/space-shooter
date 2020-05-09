@@ -35,7 +35,7 @@ pub fn spawn_simple_enemy(world: &mut World) -> Entity {
         .create_entity()
         .with(Enemy {})
         .with(Health {
-            health: 0.0,
+            health: 100.0,
             max_health: 0.0,
             shield: 0.0,
             lives: 1,
