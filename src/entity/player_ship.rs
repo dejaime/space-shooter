@@ -63,7 +63,7 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
             max_health: 0.0,
             shield: 0.0,
             lives: 1,
-            last_hit_time: 0.0,
+            time_since_last_hit: 0.0,
             health_type: HealthType::Player,
         })
         .with(local_transform)

@@ -39,7 +39,7 @@ pub fn spawn_simple_enemy(world: &mut World) -> Entity {
             max_health: 0.0,
             shield: 0.0,
             lives: 1,
-            last_hit_time: 0.0,
+            time_since_last_hit: 0.0,
             health_type: HealthType::Enemy,
         })
         .with(Ship {
