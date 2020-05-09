@@ -79,7 +79,6 @@ impl SimpleState for SpaceState {
         spawn_player_ship(data.world, false);
         spawn_player_ship(data.world, true);
 
-        data.world.register::<Enemy>();
         spawn_simple_enemy(data.world);
 
         data.world.insert(PropCounter {
