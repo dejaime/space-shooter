@@ -35,6 +35,9 @@ impl<'s> System<'s> for LaserCollisionSystem {
                     if is_colliding(ship_transform, ship, laser_transform, laser) {
                         //HIT
 
+                        ship_health.health -= laser.damage;
+                        ship_health.time_since_last_hit = 0.0;
+
                         if laser.destroy_on_hit {
                             let _ = entities.delete(laser_entity);
                         }
@@ -44,7 +47,7 @@ impl<'s> System<'s> for LaserCollisionSystem {
                 {
                     if is_colliding(ship_transform, ship, laser_transform, laser) {
                         //HIT
-                        
+
                         if laser.destroy_on_hit {
                             let _ = entities.delete(laser_entity);
                         }
@@ -73,6 +76,5 @@ fn is_colliding(
 
     let min_collision_distance_squared = ship_component.radius * ship_component.radius
         + laser_component.radius * laser_component.radius;
-    
     current_distance_squared < min_collision_distance_squared
 }
