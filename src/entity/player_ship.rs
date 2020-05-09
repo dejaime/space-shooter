@@ -8,6 +8,7 @@ use amethyst::{
 use crate::component::{
     player_component::{Player, PlayerSeat},
     ship_component::Ship,
+    health_component::{Health, HealthType},
     weapon_component::Weapon,
     weapon_type::*,
 };
@@ -54,8 +55,16 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
             ..Default::default()
         })
         .with(Ship {
-            radius: 0.0,
+            radius: 10.0,
             speed: SHIP_SPEED,
+        })
+        .with(Health {
+            health: 0.0,
+            max_health: 0.0,
+            shield: 0.0,
+            lives: 1,
+            last_hit_time: 0.0,
+            health_type: HealthType::Player,
         })
         .with(local_transform)
         .with(SpriteRender {
