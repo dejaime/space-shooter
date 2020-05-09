@@ -13,5 +13,8 @@ mod laser_firing;
 pub use self::laser_collision::LaserCollisionSystem;
 mod laser_collision;
 
+pub use self::health::HealthSystem;
+mod health;
+
 pub use self::cling::ClingSystem;
 mod cling;
