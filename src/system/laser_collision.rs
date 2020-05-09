@@ -43,7 +43,18 @@ impl<'s> System<'s> for LaserCollisionSystem {
                             let _ = entities.delete(laser_entity);
                         // }
                     }
-                } else {
+                } else if laser.owner_seat != PlayerSeat::NonPlayer && ship_health.health_type !=  HealthType::Player {
+                    let laser_translation = laser_transform.translation();
+
+                    let x_distance_squared = (laser_translation.x - ship_translation.x) * (laser_translation.x - ship_translation.x);
+                    let y_distance_squared = (laser_translation.y - ship_translation.y) * (laser_translation.y - ship_translation.y);
+                    let distance_squared = x_distance_squared + y_distance_squared;
+
+                    if distance_squared < ship_radius_squared {
+                        // if laser.destroy_on_hit {
+                            let _ = entities.delete(laser_entity);
+                        // }
+                    }
                 }
             }
         }
