@@ -8,6 +8,7 @@ use amethyst::{
 use crate::component::{
     enemy_component::Enemy, player_component::PlayerSeat, ship_component::Ship,
     weapon_component::Weapon, weapon_type::*,
+    health_component::{Health, HealthType},
 };
 use crate::entity::weapon::spawn_weapon_entity;
 use crate::graphics::get_spritesheet_handle;
@@ -33,8 +34,16 @@ pub fn spawn_simple_enemy(world: &mut World) -> Entity {
     let mut ship = world
         .create_entity()
         .with(Enemy {})
+        .with(Health {
+            health: 0.0,
+            max_health: 0.0,
+            shield: 0.0,
+            lives: 1,
+            last_hit_time: 0.0,
+            health_type: HealthType::Enemy,
+        })
         .with(Ship {
-            radius: 0.0,
+            radius: 30.0,
             speed: SHIP_SPEED,
         })
         .with(local_transform)
