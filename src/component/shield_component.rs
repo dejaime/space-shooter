@@ -19,14 +19,14 @@ impl Component for Shield {
 }
 
 impl Default for Shield {
-    fn default() -> Shield {
-        owner_seat: PlayerSeat::NonPlayer,
+    fn default() -> Self {
+        Shield {owner_seat: PlayerSeat::NonPlayer,
         hit_points: 100.0,
         max_hit_points: 100.0,
         recovery_cooldown: 0.0,
         time_since_last_hit: 10.0,
         time_since_last_break: 10.0,
         hit_point_recovery_per_second: 0.0,
-        fully_recovered_after_break: true,
+        fully_recovered_after_break: true,}
     }
 }
