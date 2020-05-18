@@ -18,7 +18,7 @@ impl<'s> System<'s> for EnergyRecoverySystem {
 
             energy.energy = energy.energy_recovery_per_second * time.delta_seconds();
             if energy.energy > energy.max_energy {
-                energy.energy = energy.max_energy
+                energy.energy = energy.max_energy;
             }
         }
     }
