@@ -8,6 +8,7 @@ use crate::component::{player_component::PlayerSeat};
 pub struct Shield {
     pub owner_seat: PlayerSeat,
     pub hit_points: f32,
+    pub max_hit_points: f32,
     pub cooldown: f32,
     pub time_since_last_hit: f32,
     pub time_since_last_break: f32,
