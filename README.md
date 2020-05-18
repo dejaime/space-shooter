@@ -1,6 +1,7 @@
 # WIP
 
 This is still a work in progress
+
 Follow the progress at https://trello.com/b/iFWbsMax/space-shooter
 
 ## How to run
