@@ -33,22 +33,6 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
     let spawn_y = if second_player { 128.0 } else { 0.0 };
     local_transform.set_translation(Vector3::new(0.0, spawn_y, 0.0));
 
-    let weapon_component = if second_player {
-        Weapon {
-            owner_seat: player_seat,
-            weapon_type: WeaponType::Player(PlayerWeapon::Fast(player_seat)),
-            next_shot_time: 0.0,
-            cooldown: 0.05,
-        }
-    } else {
-        Weapon {
-            owner_seat: player_seat,
-            weapon_type: WeaponType::Player(PlayerWeapon::Simple(player_seat)),
-            next_shot_time: 0.0,
-            cooldown: 0.05,
-        }
-    };
-
     let mut ship = world
         .create_entity()
         .with(Player {
@@ -80,7 +64,23 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
             sprite_number: 0,
         })
         .build();
-    
+
+    let weapon_component = if second_player {
+        Weapon {
+            owner_seat: player_seat,
+            weapon_type: WeaponType::Player(PlayerWeapon::Fast(player_seat)),
+            next_shot_time: 0.0,
+            cooldown: 0.05,
+        }
+    } else {
+        Weapon {
+            owner_seat: player_seat,
+            weapon_type: WeaponType::Player(PlayerWeapon::Simple(player_seat)),
+            next_shot_time: 0.0,
+            cooldown: 0.05,
+        }
+    };
+
     spawn_weapon_entity(world, weapon_component, &mut ship);
 
     ship
