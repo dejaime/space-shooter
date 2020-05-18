@@ -71,7 +71,7 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
             energy: 100.0,
             max_energy: 100.0,
             energy_recovery_per_second: 10.0,
-            recover_cooldown: 5.0,
+            recovery_cooldown: 5.0,
             time_since_last_activation: 5.0,
         })
         .with(local_transform)
