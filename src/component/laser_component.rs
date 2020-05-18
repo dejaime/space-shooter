@@ -22,6 +22,24 @@ pub struct Laser {
     pub hit_this_turn: bool,
 }
 
+impl Default for Laser {
+    fn default() -> Self {
+        Laser {
+            owner_seat: PlayerSeat::NonPlayer,
+            weapon_type: WeaponType::Enemy(EnemyWeapon::Simple),
+            initial_point: Vector3::new(0.0, 10.0, 0.0),
+            directional_speed: Vector3::new(0.0, 10.0, 0.0),
+            directional_acceleration: Vector3::new(0.0, 0.1, 0.0),
+            directional_torque: Vector3::new(0.0, 0.1, 0.0),
+            rotational_radian_speed: 0.0,
+            damage: 1.0,
+            radius: 10.0,
+            destroy_on_hit: true,
+            hit_this_turn: false,
+        }
+    }
+}
+
 impl Component for Laser {
     type Storage = VecStorage<Self>;
 }
@@ -31,17 +49,7 @@ pub fn laser_vector_from_weapon_type(
     emit_point: Vector3<f32>,
 ) -> Vec<Laser> {
     let default_laser = vec![Laser {
-        owner_seat: PlayerSeat::NonPlayer,
-        weapon_type: WeaponType::Enemy(EnemyWeapon::Simple),
-        initial_point: emit_point,
-        directional_speed: Vector3::new(0.0, 10.0, 0.0),
-        directional_acceleration: Vector3::new(0.0, 0.1, 0.0),
-        directional_torque: Vector3::new(0.0, 0.1, 0.0),
-        rotational_radian_speed: 0.0,
-        damage: 1.0,
-        radius: 10.0,
-        destroy_on_hit: true,
-        hit_this_turn: false,
+        ..Default::default()
     }];
 
     let mut rng = thread_rng();
@@ -56,10 +64,7 @@ pub fn laser_vector_from_weapon_type(
                 directional_speed: Vector3::new(0.0, 1000.0, 0.0),
                 directional_acceleration: Vector3::new(0.0, 1000.0, 0.0),
                 directional_torque: Vector3::new(0.0, 0.0, 0.0),
-                rotational_radian_speed: 0.0,
-                damage: 1.0,
-                radius: 10.0,
-                destroy_on_hit: true,
+                ..Default::default()
             }],
             PlayerWeapon::Simple(seat) => vec![
                 Laser {
@@ -69,10 +74,8 @@ pub fn laser_vector_from_weapon_type(
                     directional_speed: Vector3::new(0.0, 400.0, 0.0),
                     directional_acceleration: Vector3::new(0.0, 100.0, 0.0),
                     directional_torque: Vector3::new(0.0, 100.0, 0.0),
-                    rotational_radian_speed: 0.0,
                     damage: 0.6,
-                    radius: 10.0,
-                    destroy_on_hit: true,
+                    ..Default::default()
                 },
                 Laser {
                     weapon_type: weapon_type,
@@ -81,10 +84,8 @@ pub fn laser_vector_from_weapon_type(
                     directional_speed: Vector3::new(0.0, 400.0, 0.0),
                     directional_acceleration: Vector3::new(0.0, 100.0, 0.0),
                     directional_torque: Vector3::new(0.0, 100.0, 0.0),
-                    rotational_radian_speed: 0.0,
                     damage: 0.6,
-                    radius: 10.0,
-                    destroy_on_hit: true,
+                    ..Default::default()
                 },
             ],
             PlayerWeapon::Arc(seat) => vec![
@@ -95,10 +96,7 @@ pub fn laser_vector_from_weapon_type(
                     directional_speed: Vector3::new(400.0, -100.0, 0.0),
                     directional_acceleration: Vector3::new(-300.0, 1000.0, 0.0),
                     directional_torque: Vector3::new(0.0, 100.0, 0.0),
-                    rotational_radian_speed: 0.0,
-                    damage: 1.0,
-                    radius: 10.0,
-                    destroy_on_hit: true,
+                    ..Default::default()
                 },
                 Laser {
                     weapon_type: weapon_type,
@@ -107,10 +105,7 @@ pub fn laser_vector_from_weapon_type(
                     directional_speed: Vector3::new(-400.0, -100.0, 0.0),
                     directional_acceleration: Vector3::new(300.0, 1000.0, 0.0),
                     directional_torque: Vector3::new(0.0, 100.0, 0.0),
-                    rotational_radian_speed: 0.0,
-                    damage: 1.0,
-                    radius: 10.0,
-                    destroy_on_hit: true,
+                    ..Default::default()
                 },
             ],
             PlayerWeapon::V(seat) => vec![
@@ -121,10 +116,7 @@ pub fn laser_vector_from_weapon_type(
                     directional_speed: Vector3::new(300.0, 500.0, 0.0),
                     directional_acceleration: Vector3::new(0.0, 0.0, 0.0),
                     directional_torque: Vector3::new(0.0, 100.0, 0.0),
-                    rotational_radian_speed: 0.0,
-                    damage: 1.0,
-                    radius: 10.0,
-                    destroy_on_hit: true,
+                    ..Default::default()
                 },
                 Laser {
                     weapon_type: weapon_type,
@@ -133,10 +125,7 @@ pub fn laser_vector_from_weapon_type(
                     directional_speed: Vector3::new(-300.0, 500.0, 0.0),
                     directional_acceleration: Vector3::new(0.0, 0.0, 0.0),
                     directional_torque: Vector3::new(0.0, 100.0, 0.0),
-                    rotational_radian_speed: 0.0,
-                    damage: 1.0,
-                    radius: 10.0,
-                    destroy_on_hit: true,
+                    ..Default::default()
                 },
             ],
         },
@@ -148,10 +137,8 @@ pub fn laser_vector_from_weapon_type(
                 directional_speed: Vector3::new(x_dir * 100.0, -150.0, 0.0),
                 directional_acceleration: Vector3::new(x_dir * 50.0, -50.0, 0.0),
                 directional_torque: Vector3::new(0.0, 0.0, 0.0),
-                rotational_radian_speed: 0.0,
                 damage: 10.0,
-                radius: 10.0,
-                destroy_on_hit: true,
+                ..Default::default()
             }],
             EnemyWeapon::Fast => default_laser,
             EnemyWeapon::Arc => default_laser,
