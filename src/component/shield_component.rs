@@ -13,6 +13,7 @@ pub struct Shield {
     pub time_since_last_hit: f32,
     pub time_since_last_break: f32,
     pub hit_point_recovery_per_second: f32,
+    pub fully_recovered_after_break: f32,
 }
 
 impl Component for Shield {
