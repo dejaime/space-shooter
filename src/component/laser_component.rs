@@ -19,6 +19,7 @@ pub struct Laser {
     pub damage: f32,
     pub radius: f32,
     pub destroy_on_hit: bool,
+    pub hit_this_turn: bool,
 }
 
 impl Component for Laser {
@@ -40,6 +41,7 @@ pub fn laser_vector_from_weapon_type(
         damage: 1.0,
         radius: 10.0,
         destroy_on_hit: true,
+        hit_this_turn: false,
     }];
 
     let mut rng = thread_rng();
