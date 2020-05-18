@@ -12,7 +12,7 @@ impl<'s> System<'s> for EnergyRecoverySystem {
 
     fn run(&mut self, (mut energies, time): Self::SystemData) {
         for energy in (&mut energies).join() {
-            if energy.time_since_last_activation < energy.recover_cooldown {
+            if energy.time_since_last_activation < energy.recovery_cooldown {
                 continue;
             }
 
