@@ -9,6 +9,7 @@ use crate::component::{
     player_component::{Player, PlayerSeat},
     ship_component::Ship,
     health_component::{Health, HealthType},
+    energy_component::Energy,
     weapon_component::Weapon,
     weapon_type::*,
 };
@@ -65,6 +66,13 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
             lives: 1,
             time_since_last_hit: 0.0,
             health_type: HealthType::Player,
+        })
+        .with(Energy {
+            energy: 100.0,
+            max_energy: 100.0,
+            energy_recovery_per_second: 10.0,
+            recover_cooldown: 5.0,
+            time_since_last_activation: 5.0,
         })
         .with(local_transform)
         .with(SpriteRender {
