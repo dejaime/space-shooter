@@ -16,5 +16,8 @@ mod laser_collision;
 pub use self::health::HealthSystem;
 mod health;
 
+pub use self::energy_recovery::EnergyRecoverySystem;
+mod energy_recovery;
+
 pub use self::cling::ClingSystem;
 mod cling;
