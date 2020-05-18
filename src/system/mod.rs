@@ -19,5 +19,8 @@ mod health;
 pub use self::energy_recovery::EnergyRecoverySystem;
 mod energy_recovery;
 
+pub use self::shield_recovery::ShieldRecoverySystem;
+mod shield_recovery;
+
 pub use self::cling::ClingSystem;
 mod cling;
