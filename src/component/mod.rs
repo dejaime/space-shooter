@@ -29,3 +29,6 @@ pub use self::health_component::HealthType;
 
 pub mod energy_component;
 pub use self::energy_component::Energy;
+
+pub mod shield_component;
+pub use self::shield_component::Shield;
