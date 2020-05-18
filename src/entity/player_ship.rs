@@ -6,15 +6,18 @@ use amethyst::{
 };
 
 use crate::component::{
-    player_component::{Player, PlayerSeat},
-    ship_component::Ship,
-    health_component::{Health, HealthType},
     energy_component::Energy,
+    health_component::{Health, HealthType},
+    player_component::{Player, PlayerSeat},
+    shield_component::Shield,
+    ship_component::Ship,
     weapon_component::Weapon,
     weapon_type::*,
 };
-use crate::graphics::get_spritesheet_handle;
+
+use crate::entity::shield::spawn_shield_entity;
 use crate::entity::weapon::spawn_weapon_entity;
+use crate::graphics::{get_spritesheet_handle, SpritesHolder};
 
 const _SHIP_COLLISION_RADIUS: f32 = 32.0;
 const SHIP_SPEED: f32 = 400.0;
@@ -82,6 +85,19 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
     };
 
     spawn_weapon_entity(world, weapon_component, &mut ship);
+
+    let shield_component = Shield {
+        owner_seat: player_seat,
+        hit_points: 0.0,
+        max_hit_points: 0.0,
+        recovery_cooldown: 0.0,
+        time_since_last_hit: 0.0,
+        time_since_last_break: 0.0,
+        hit_point_recovery_per_second: 0.0,
+        fully_recovered_after_break: true,
+    };
+
+    spawn_shield_entity(world, shield_component, &mut ship);
 
     ship
 }
