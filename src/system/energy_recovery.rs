@@ -1,25 +1,17 @@
 use amethyst::{
-    core::{timing::Time, Transform},
-    derive::SystemDesc,
-    ecs::{Entities, Join, Read, ReadStorage, System, SystemData, WriteStorage},
+    core::timing::Time,
+    ecs::{Join, Read, System, WriteStorage},
 };
 
-use crate::component::{
-    energy_component::Energy,
-    player_component::{Player, PlayerSeat},
-};
+use crate::component::energy_component::Energy;
 
 pub struct EnergyRecoverySystem;
 
 impl<'s> System<'s> for EnergyRecoverySystem {
-    type SystemData = (
-        WriteStorage<'s, Energy>,
-        ReadStorage<'s, Player>,
-        Read<'s, Time>,
-    );
+    type SystemData = (WriteStorage<'s, Energy>, Read<'s, Time>);
 
-    fn run(&mut self, (mut energies, players, time): Self::SystemData) {
-        for (energy, player) in (&mut energies, &players).join() {
+    fn run(&mut self, (mut energies, time): Self::SystemData) {
+        for energy in (&mut energies).join() {
             if energy.time_since_last_activation < energy.recover_cooldown {
                 continue;
             }
