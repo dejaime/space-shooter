@@ -2,7 +2,7 @@ use amethyst::{
     core::transform::{Parent, Transform},
     ecs::prelude::{Entity, World},
     prelude::*,
-    renderer::SpriteRender,
+    renderer::{SpriteRender, Transparent},
 };
 
 use crate::graphics::SpritesHolder;
@@ -33,6 +33,11 @@ pub fn spawn_shield_entity(
             sprite_sheet,
             sprite_number: 8,
         })
+        // .with(
+        //     Transparent {
+
+        //     }
+        // )
         .with(Parent::new(*owner))
         .build()
 }

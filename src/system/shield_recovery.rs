@@ -32,6 +32,9 @@ impl<'s> System<'s> for ShieldRecoverySystem {
             if shield.hit_points > shield.max_hit_points {
                 shield.hit_points = shield.max_hit_points;
             }
+
+            let current_shield_ratio = shield.hit_points / shield.max_hit_points;
+
         }
     }
 }
