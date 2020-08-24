@@ -126,6 +126,11 @@ pub fn initialise_graphics(world: &mut World) -> BTreeMap<&'static str, Handle<S
         load_spritesheet(world, "texture/enemy.png", "texture/enemy_6_sheet.ron"),
     );
 
+    spritesheet_map.insert(
+        "black_bg",
+        load_spritesheet(world, "texture/black_bg.png", "texture/black_bg.ron"),
+    );
+
     spritesheet_map
 }
 
