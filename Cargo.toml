@@ -5,7 +5,7 @@ authors = ["Dejaime Antônio de Oliveira Neto <contact@dejai.me>"]
 edition = "2018"
 
 [dependencies]
-amethyst = "0.15.0"
+amethyst = "0.15.1"
 rand = "0.7.3"
 
 [features]
