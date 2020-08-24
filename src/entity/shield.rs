@@ -1,5 +1,5 @@
 use amethyst::{
-    core::transform::{Parent, Transform},
+    core::{transform::{Parent, Transform}, math::Vector3},
     ecs::prelude::{Entity, World},
     prelude::*,
     renderer::{palette::Srgba, resources::Tint, SpriteRender, Transparent},
@@ -25,10 +25,13 @@ pub fn spawn_shield_entity(
             .clone();
     }
 
+    let mut local_transform = Transform::default();
+    local_transform.set_translation(Vector3::new(0.0, 0.0, 0.1));
+
     world
         .create_entity()
         .with(shield_component)
-        .with(Transform::default())
+        .with(local_transform)
         .with(SpriteRender {
             sprite_sheet,
             sprite_number: 8,
