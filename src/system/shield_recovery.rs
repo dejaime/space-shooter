@@ -1,8 +1,9 @@
 use amethyst::{
     core::timing::Time,
     ecs::{Join, Read, System, WriteStorage},
-    renderer::{resources::Tint},
-    core::math,
+    renderer::{
+        resources::Tint,
+    },
 };
 
 use crate::component::shield_component::Shield;
@@ -10,14 +11,21 @@ use crate::component::shield_component::Shield;
 pub struct ShieldRecoverySystem;
 
 impl<'s> System<'s> for ShieldRecoverySystem {
-    type SystemData = (WriteStorage <'s, Tint>, WriteStorage<'s, Shield>, Read<'s, Time>);
+    type SystemData = (
+        WriteStorage<'s, Tint>,
+        WriteStorage<'s, Shield>,
+        Read<'s, Time>,
+    );
 
     fn run(&mut self, (mut tints, mut shields, time): Self::SystemData) {
-
         for tint in (&mut tints).join() {
-            let time:f32  = time.absolute_time().as_secs_f32() as f32 * 4.0;
-            tint.0.alpha = (0.5 + time.sin() * 0.51).max(0.0);
-            println!("Tinting to: {}", tint.0.alpha);
+            let time: f32 = time.absolute_time().as_secs_f32() as f32 * 4.0;
+
+            let alpha = (0.5 + time.sin() * 0.51).max(0.0);
+            
+            tint.0.red = alpha;
+            tint.0.green = alpha;
+            tint.0.blue = alpha;
         }
 
         for shield in (&mut shields).join() {
@@ -43,7 +51,6 @@ impl<'s> System<'s> for ShieldRecoverySystem {
             }
 
             let current_shield_ratio = shield.hit_points / shield.max_hit_points;
-
         }
     }
 }
