@@ -17,7 +17,7 @@ use crate::component::{
 
 use crate::entity::shield::spawn_shield_entity;
 use crate::entity::weapon::spawn_weapon_entity;
-use crate::graphics::{get_spritesheet_handle, SpritesHolder};
+use crate::graphics::{get_spritesheet_handle};
 
 const _SHIP_COLLISION_RADIUS: f32 = 32.0;
 const SHIP_SPEED: f32 = 400.0;
@@ -34,7 +34,7 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
     let mut local_transform = Transform::default();
 
     let spawn_y = if second_player { 128.0 } else { 0.0 };
-    local_transform.set_translation(Vector3::new(0.0, spawn_y, 0.0));
+    local_transform.set_translation(Vector3::new(0.0, spawn_y, 0.1));
 
     let mut ship = world
         .create_entity()
