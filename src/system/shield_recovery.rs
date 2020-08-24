@@ -1,6 +1,8 @@
 use amethyst::{
     core::timing::Time,
     ecs::{Join, Read, System, WriteStorage},
+    renderer::{resources::Tint},
+    core::math,
 };
 
 use crate::component::shield_component::Shield;
@@ -8,9 +10,16 @@ use crate::component::shield_component::Shield;
 pub struct ShieldRecoverySystem;
 
 impl<'s> System<'s> for ShieldRecoverySystem {
-    type SystemData = (WriteStorage<'s, Shield>, Read<'s, Time>);
+    type SystemData = (WriteStorage <'s, Tint>, WriteStorage<'s, Shield>, Read<'s, Time>);
 
-    fn run(&mut self, (mut shields, time): Self::SystemData) {
+    fn run(&mut self, (mut tints, mut shields, time): Self::SystemData) {
+
+        for tint in (&mut tints).join() {
+            let time:f32  = time.absolute_time().as_secs_f32() as f32 * 4.0;
+            tint.0.alpha = (0.5 + time.sin() * 0.51).max(0.0);
+            println!("Tinting to: {}", tint.0.alpha);
+        }
+
         for shield in (&mut shields).join() {
             if shield.time_since_last_hit < shield.recovery_cooldown {
                 continue;
