@@ -15,3 +15,6 @@ pub use self::weapon::spawn_weapon_entity;
 
 pub mod shield;
 pub use self::shield::spawn_shield_entity;
+
+pub mod black_background;
+pub use self::black_background::spawn_background;
