@@ -26,6 +26,7 @@ impl<'s> System<'s> for ShieldRecoverySystem {
             tint.0.red = alpha;
             tint.0.green = alpha;
             tint.0.blue = alpha;
+            tint.0.alpha = alpha;
         }
 
         for shield in (&mut shields).join() {

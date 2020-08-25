@@ -36,7 +36,7 @@ pub fn spawn_shield_entity(
             sprite_sheet,
             sprite_number: 8,
         })
-        .with(Tint(Srgba::new(1.0, 1.0, 1.0, 0.1)))
+        .with(Tint(Srgba::new(1.0, 1.0, 1.0, 0.01)))
         .with(Transparent {})
         .with(Parent::new(*owner))
         .build()
