@@ -32,7 +32,10 @@ pub fn spawn_prop(world: &mut World, rng: &mut ThreadRng) -> Entity {
     };
 
     let mut transform = Transform::default();
-    transform.set_translation_xyz(rng.gen_range(-1000.0, 1000.0), 550.0, 0.0);
+    transform.set_translation_xyz(rng.gen_range(-1000.0, 1000.0), 550.0, -0.1);
+    if is_asteroid {
+        transform.set_translation_z(-0.05);
+    }
     transform.set_scale(Vector3::new(scale, scale, scale));
 
     let prop = Prop {
