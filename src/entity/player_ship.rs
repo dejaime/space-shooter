@@ -9,13 +9,11 @@ use crate::component::{
     energy_component::Energy,
     health_component::{Health, HealthType},
     player_component::{Player, PlayerSeat},
-    shield_component::Shield,
     ship_component::Ship,
     weapon_component::Weapon,
     weapon_type::*,
 };
 
-use crate::entity::shield::spawn_shield_entity;
 use crate::entity::weapon::spawn_weapon_entity;
 use crate::graphics::{get_spritesheet_handle};
 
@@ -49,10 +47,10 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
         .with(Health {
             health: 100.0,
             max_health: 0.0,
-            shield: 0.0,
             lives: 1,
             time_since_last_hit: 0.0,
             health_type: HealthType::Player,
+            ..Default::default()
         })
         .with(Energy {
             energy: 100.0,
@@ -85,17 +83,6 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
     };
 
     spawn_weapon_entity(world, weapon_component, &mut ship);
-
-    let shield_component = Shield {
-        owner_seat: player_seat,
-        recovery_cooldown: 5.0,
-        time_since_last_hit: 5.0,
-        time_since_last_break: 5.0,
-        hit_point_recovery_per_second: 20.0,
-        ..Default::default()
-    };
-
-    spawn_shield_entity(world, shield_component, &mut ship);
-
+    
     ship
 }
