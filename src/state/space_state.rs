@@ -1,6 +1,11 @@
-use amethyst::{core::timing::Time, prelude::*};
+use amethyst::{
+    core::timing::Time, 
+    prelude::*,
+};
 
-use crate::entity::{player_ship::spawn_player_ship, prop::spawn_prop, enemy_ship::spawn_simple_enemy};
+use crate::entity::{
+    enemy_ship::spawn_simple_enemy, player_ship::spawn_player_ship, prop::spawn_prop,
+};
 
 use rand::prelude::*;
 
