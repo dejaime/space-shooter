@@ -47,7 +47,6 @@ pub fn spawn_player_ship(world: &mut World, second_player: bool) -> Entity {
         .with(Health {
             health: 100.0,
             max_health: 0.0,
-            lives: 1,
             time_since_last_hit: 0.0,
             health_type: HealthType::Player,
             ..Default::default()

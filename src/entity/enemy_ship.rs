@@ -37,7 +37,6 @@ pub fn spawn_simple_enemy(world: &mut World) -> Entity {
         .with(Health {
             health: 100.0,
             max_health: 0.0,
-            lives: 1,
             time_since_last_hit: 0.0,
             health_type: HealthType::Enemy,
         })
