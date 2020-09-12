@@ -60,9 +60,7 @@ fn main() -> amethyst::Result<()> {
         .with(system::LaserMovementSystem, "laser_movement_system", &[])
         .with(system::LaserCollisionSystem, "laser_collision_system", &[])
         .with(system::HealthSystem, "health_system", &[])
-        .with(system::EnergyRecoverySystem, "energy_recovery_system", &[])
-        .with(system::ShieldRecoverySystem, "shield_recovery_system", &[])
-        .with(system::ClingSystem, "cling_system", &[]);
+        .with(system::EnergyRecoverySystem, "energy_recovery_system", &[]);
     let mut game = Application::new(assets_dir, LoadingState {}, game_data)?;
     game.run();
 
