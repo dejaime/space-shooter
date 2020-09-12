@@ -10,7 +10,6 @@ pub enum HealthType {
 pub struct Health {
     pub health: f32,
     pub max_health: f32,
-    pub shield: f32,
     pub lives: i32,
     pub time_since_last_hit: f32,
     pub health_type: HealthType,
