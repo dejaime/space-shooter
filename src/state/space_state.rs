@@ -4,7 +4,7 @@ use amethyst::{
 };
 
 use crate::entity::{
-    enemy_ship::spawn_simple_enemy, player_ship::spawn_player_ship, prop::spawn_prop,
+    enemy_ship::spawn_simple_enemy, player_ship::spawn_player_ship, prop::{spawn_prop, prop_warm_up}
 };
 
 use rand::prelude::*;
@@ -83,6 +83,8 @@ impl SimpleState for SpaceState {
         spawn_player_ship(data.world, true);
 
         spawn_simple_enemy(data.world);
+
+        prop_warm_up(data.world, &mut self.rng);
 
         data.world.insert(PropCounter {
             ..Default::default()
