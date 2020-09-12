@@ -20,9 +20,6 @@ pub use self::weapon_type::*;
 pub mod weapon_component;
 pub use self::weapon_component::Weapon;
 
-pub mod clingy_component;
-pub use self::clingy_component::ClingTo;
-
 pub mod health_component;
 pub use self::health_component::Health;
 pub use self::health_component::HealthType;
@@ -30,5 +27,3 @@ pub use self::health_component::HealthType;
 pub mod energy_component;
 pub use self::energy_component::Energy;
 
-pub mod shield_component;
-pub use self::shield_component::Shield;
