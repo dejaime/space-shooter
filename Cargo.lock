@@ -1629,6 +1629,7 @@ name = "jam-one"
 version = "0.1.0"
 dependencies = [
  "amethyst",
+ "pareen",
  "rand 0.7.3",
 ]
 
@@ -2175,6 +2176,15 @@ dependencies = [
  "proc-macro2 0.4.30",
  "quote 0.6.13",
  "syn 0.14.9",
+]
+
+[[package]]
+name = "pareen"
+version = "0.2.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eec0019d1aa23094878262958b2c4598183d5d093c1b4241bd2407583ad80149"
+dependencies = [
+ "num-traits 0.2.12",
 ]
 
 [[package]]

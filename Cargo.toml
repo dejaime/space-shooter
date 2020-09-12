@@ -5,8 +5,9 @@ authors = ["Dejaime Antônio de Oliveira Neto <contact@dejai.me>"]
 edition = "2018"
 
 [dependencies]
-amethyst = "0.15.1"
+amethyst = {version = "0.15.3", features = ["no-slow-safety-checks"]}
 rand = "0.7.3"
+pareen = "0.2"
 
 [features]
 default = ["vulkan"]
