@@ -28,7 +28,7 @@ pub fn spawn_simple_enemy(world: &mut World) -> Entity {
         owner_seat: PlayerSeat::NonPlayer,
         weapon_type: WeaponType::Enemy(EnemyWeapon::Simple),
         next_shot_time: 0.0,
-        cooldown: 0.5,
+        cooldown: 0.05,
     };
 
     let mut ship = world
@@ -37,7 +37,6 @@ pub fn spawn_simple_enemy(world: &mut World) -> Entity {
         .with(Health {
             health: 100.0,
             max_health: 0.0,
-            shield: 0.0,
             lives: 1,
             time_since_last_hit: 0.0,
             health_type: HealthType::Enemy,
