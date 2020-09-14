@@ -108,7 +108,7 @@ impl SimpleState for SpaceState {
             if p2_dead && self.player_two_lives > 0 {
                 self.player_two_lives -= 1;
                 spawn_player_ship(data.world, true);
-            } else if p1_dead && p2_dead {
+            } else if p1_dead && p2_dead && self.player_one_lives <= 0 {
                 data.world.delete_all();
                 return Trans::Replace(Box::new(LoadingState {
                     ..Default::default()
