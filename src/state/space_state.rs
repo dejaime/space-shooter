@@ -7,6 +7,9 @@ use crate::entity::{
     enemy_ship::spawn_simple_enemy, player_ship::spawn_player_ship, prop::{spawn_prop, prop_warm_up}
 };
 
+use crate::system::DeadPlayers;
+use crate::state::LoadingState;
+
 use rand::prelude::*;
 
 pub struct SpaceState {
@@ -15,9 +18,6 @@ pub struct SpaceState {
 
     pub player_one_score: u64,
     pub player_two_score: u64,
-
-    pub player_one_distance_travelled: u32,
-    pub player_two_distance_travelled: u32,
 
     pub player_one_projectiles_fired: u64,
     pub player_two_projectiles_fired: u64,
@@ -42,9 +42,6 @@ impl Default for SpaceState {
 
             player_one_score: 0,
             player_two_score: 0,
-
-            player_one_distance_travelled: 0,
-            player_two_distance_travelled: 0,
 
             player_one_projectiles_fired: 0,
             player_two_projectiles_fired: 0,
@@ -94,9 +91,22 @@ impl SimpleState for SpaceState {
     fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
         let delta_time = data.world.fetch::<Time>().delta_seconds();
 
+        let (p1_dead, p2_dead) = {
+            let dead_players = data.world.fetch::<DeadPlayers>();
+            (dead_players.p1_dead, dead_players.p2_dead)
+        };
+
         if self.running_intro {
             self.running_intro = false;
         } else {
+
+            if p1_dead && p2_dead {
+                data.world.delete_all();
+                return Trans::Replace(Box::new(LoadingState {
+                    ..Default::default()
+                }))
+            }
+
             if let Some(mut timer) = self.spawn_prop_timer.take() {
                 timer -= delta_time;
                 if timer <= 0.0 {
