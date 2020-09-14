@@ -19,3 +19,7 @@ mod health;
 pub use self::energy_recovery::EnergyRecoverySystem;
 mod energy_recovery;
 
+pub use self::game_over::GameOverSystem;
+pub use self::game_over::DeadPlayers;
+mod game_over;
+
