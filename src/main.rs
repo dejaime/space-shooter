@@ -34,6 +34,7 @@ fn main() -> amethyst::Result<()> {
         InputBundle::<StringBindings>::new().with_bindings_from_file(binding_path)?;
 
     let game_data = GameDataBuilder::default()
+        //Window definitions
         .with_bundle(
             RenderingBundle::<DefaultBackend>::new()
                 .with_plugin(
@@ -42,9 +43,13 @@ fn main() -> amethyst::Result<()> {
                 )
                 .with_plugin(RenderFlat2D::default()),
         )?
+        //Entity Transform components and systems
         .with_bundle(TransformBundle::new())?
-        .with_bundle(AudioBundle::default())?
+        //Input
         .with_bundle(input_bundle)?
+        //Audio
+        .with_bundle(AudioBundle::default())?
+        //Background music play and selection
         .with_system_desc(
             DjSystemDesc::new(|music: &mut audio::Music| music.music.next()),
             "dj_system",
