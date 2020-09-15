@@ -1,5 +1,6 @@
 use amethyst::{
     audio::{AudioBundle, DjSystemDesc},
+    ui::{UiBundle},
     core::transform::TransformBundle,
     input::{InputBundle, StringBindings},
     prelude::*,
@@ -43,6 +44,8 @@ fn main() -> amethyst::Result<()> {
                 )
                 .with_plugin(RenderFlat2D::default()),
         )?
+        //UI
+        .with_bundle(UiBundle::<StringBindings>::new())?
         //Entity Transform components and systems
         .with_bundle(TransformBundle::new())?
         //Input
