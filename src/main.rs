@@ -1,6 +1,6 @@
 use amethyst::{
     audio::{AudioBundle, DjSystemDesc},
-    ui::{UiBundle},
+    ui::{UiBundle, RenderUi},
     core::transform::TransformBundle,
     input::{InputBundle, StringBindings},
     prelude::*,
@@ -13,6 +13,7 @@ use amethyst::{
 };
 
 mod audio;
+mod fonts;
 mod component;
 mod entity;
 mod graphics;
@@ -35,6 +36,12 @@ fn main() -> amethyst::Result<()> {
         InputBundle::<StringBindings>::new().with_bindings_from_file(binding_path)?;
 
     let game_data = GameDataBuilder::default()
+        //Entity Transform components and systems
+        .with_bundle(TransformBundle::new())?
+        //Input
+        .with_bundle(input_bundle)?
+        //UI
+        .with_bundle(UiBundle::<StringBindings>::new())?
         //Window definitions
         .with_bundle(
             RenderingBundle::<DefaultBackend>::new()
@@ -42,14 +49,9 @@ fn main() -> amethyst::Result<()> {
                     RenderToWindow::from_config_path(display_config_path)?
                         .with_clear([0.0, 0.0, 0.0, 1.0]),
                 )
-                .with_plugin(RenderFlat2D::default()),
+                .with_plugin(RenderFlat2D::default())
+                .with_plugin(RenderUi::default()),
         )?
-        //UI
-        .with_bundle(UiBundle::<StringBindings>::new())?
-        //Entity Transform components and systems
-        .with_bundle(TransformBundle::new())?
-        //Input
-        .with_bundle(input_bundle)?
         //Audio
         .with_bundle(AudioBundle::default())?
         //Background music play and selection
