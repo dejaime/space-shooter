@@ -68,7 +68,7 @@ impl SimpleState for MenuState {
         let one_uitext = UiText::new(
             get_font(data.world),
             String::from("1 Player"),
-            [1.0, 1.0, 1.0, 0.5],
+            [1.0, 1.0, 1.0, 1.0],
             25f32,
             LineMode::Single,
             Anchor::Middle,
@@ -77,7 +77,7 @@ impl SimpleState for MenuState {
         let two_uitext = UiText::new(
             get_font(data.world),
             String::from("2 Players"),
-            [1.0, 1.0, 1.0, 0.5],
+            [1.0, 1.0, 1.0, 1.0],
             25f32,
             LineMode::Single,
             Anchor::Middle,
