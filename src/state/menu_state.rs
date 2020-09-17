@@ -121,27 +121,40 @@ impl SimpleState for MenuState {
             }
         }
 
-        if !self.boool {
-            self.boool = true;
+    fn handle_event(&mut self, data: StateData<'_, GameData<'_, '_>>, event: StateEvent) -> SimpleTrans {
+        let mut next_state = SimpleTrans::None;
 
-            let p1_button = self
-                .p1_button
-                .expect("Failed deleting main menu button... somehow");
-            let p2_button = self
-                .p2_button
-                .expect("Failed deleting main menu button... somehow");
+    	if let StateEvent::Ui(ui_event) = event {
+            let p1_is_target = ui_event.target == self.p1_button.unwrap();
+            let p2_is_target = ui_event.target == self.p2_button.unwrap();
 
-            data.world
-                .delete_entity(p1_button)
-                .expect("Failed to delete entity. Was it already removed?");
-            data.world
-                .delete_entity(p2_button)
-                .expect("Failed to delete entity. Was it already removed?");
+    		match ui_event.event_type {
+    			UiEventType::Click if p1_is_target || p2_is_target => {
+
+                    let p1_button = self
+                        .p1_button
+                        .expect("Failed deleting main menu button... somehow");
+                    let p2_button = self
+                        .p2_button
+                        .expect("Failed deleting main menu button... somehow");
+
+                    data.world
+                        .delete_entity(p1_button)
+                        .expect("Failed to delete entity. Was it already removed?");
+                    data.world
+                        .delete_entity(p2_button)
+                        .expect("Failed to delete entity. Was it already removed?");
+                    next_state = Trans::Replace(Box::new(SpaceState {
+                            ..Default::default()
+                        }))
+                },
+                
+    			_ => {
+    				next_state = SimpleTrans::None
+    			},  
+            };
         }
-        data.world.maintain();
-        Trans::None
-        // Trans::Push(Box::new(SpaceState {
-        //     ..Default::default()
-        // }))
+        
+        next_state
     }
 }
