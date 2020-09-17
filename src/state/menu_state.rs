@@ -2,10 +2,11 @@ use amethyst::{
     core::timing::Time,
     ecs::world::*,
     prelude::*,
-    ui::{Anchor, Interactable, LineMode, UiText, UiTransform},
+    ui::{Anchor, Interactable, LineMode, UiText, UiTransform, UiEventType},
 };
 
 use crate::entity::prop::{prop_warm_up, spawn_prop};
+use crate::state::SpaceState;
 
 use rand::prelude::*;
 
@@ -16,7 +17,6 @@ use crate::fonts::get_font;
 pub struct MenuState {
     pub spawn_prop_timer: Option<f32>,
     pub rng: ThreadRng,
-    pub boool: bool,
     pub p1_button: Option<Entity>,
     pub p2_button: Option<Entity>,
 }
@@ -26,7 +26,6 @@ impl Default for MenuState {
         MenuState {
             spawn_prop_timer: Some(1.0),
             rng: thread_rng(),
-            boool: false,
             p1_button: None,
             p2_button: None,
         }
@@ -35,6 +34,7 @@ impl Default for MenuState {
 
 impl SimpleState for MenuState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
+        println!("Menu on_start");
         self.rng = thread_rng();
 
         prop_warm_up(data.world, &mut self.rng);
@@ -101,6 +101,8 @@ impl SimpleState for MenuState {
             .with(Interactable)
             .build();
         self.p2_button = Some(p2_button);
+
+        data.world.maintain();
     }
 
     fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
@@ -120,6 +122,11 @@ impl SimpleState for MenuState {
                 self.spawn_prop_timer.replace(timer);
             }
         }
+
+        
+        data.world.maintain();
+        Trans::None
+    }
 
     fn handle_event(&mut self, data: StateData<'_, GameData<'_, '_>>, event: StateEvent) -> SimpleTrans {
         let mut next_state = SimpleTrans::None;
