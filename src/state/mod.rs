@@ -10,3 +10,6 @@ pub use self::pause_state::PauseState;
 
 pub mod loading_state;
 pub use self::loading_state::LoadingState;
+
+pub mod game_over_state;
+pub use self::game_over_state::GameOverState;
