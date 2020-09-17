@@ -6,7 +6,8 @@ use amethyst::{
 
 use crate::audio::initialise_music;
 use crate::graphics::{initialise_graphics, SpritesHolder};
-use crate::state::SpaceState;
+use crate::state::{MenuState};
+use crate::fonts::{FontHolder, initialise_fonts};
 
 #[derive(Default)]
 pub struct LoadingState {}
@@ -19,10 +20,13 @@ impl SimpleState for LoadingState {
         initialise_music(data.world);
 
         initialise_camera(data.world);
+
+        let font_handle = initialise_fonts(data.world);
+        data.world.insert(FontHolder{font_handle});
     }
 
     fn update(&mut self, _data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
-        Trans::Push(Box::new(SpaceState {
+        Trans::Push(Box::new(MenuState {
             ..Default::default()
         }))
     }
