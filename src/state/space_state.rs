@@ -8,7 +8,7 @@ use crate::entity::{
 };
 
 use crate::system::DeadPlayers;
-use crate::state::LoadingState;
+use crate::state::GameOverState;
 
 use rand::prelude::*;
 
@@ -30,6 +30,7 @@ pub struct SpaceState {
 
     pub spawn_prop_timer: Option<f32>,
     pub running_intro: bool,
+    pub game_over: bool,
 
     pub rng: ThreadRng,
 }
@@ -54,6 +55,7 @@ impl Default for SpaceState {
 
             spawn_prop_timer: Some(1.0),
             running_intro: true,
+            game_over: false,
 
             rng: thread_rng(),
         }
@@ -80,23 +82,24 @@ impl SimpleState for SpaceState {
         spawn_player_ship(data.world, true);
 
         spawn_simple_enemy(data.world);
-
-        prop_warm_up(data.world, &mut self.rng);
-
-        data.world.insert(PropCounter {
-            ..Default::default()
-        });
     }
 
     fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
+        
         let delta_time = data.world.fetch::<Time>().delta_seconds();
 
+        if self.game_over {
+            data.world.delete_all();
+            return Trans::Replace(Box::new(GameOverState { }));
+        }
+        
         let (p1_dead, p2_dead) = {
             let dead_players = data.world.fetch::<DeadPlayers>();
             (dead_players.p1_dead, dead_players.p2_dead)
         };
 
         if self.running_intro {
+            //TODO Run Intro (Push intro state, to be popped later)
             self.running_intro = false;
         } else {
 
@@ -109,10 +112,7 @@ impl SimpleState for SpaceState {
                 self.player_two_lives -= 1;
                 spawn_player_ship(data.world, true);
             } else if p1_dead && p2_dead && self.player_one_lives <= 0 {
-                data.world.delete_all();
-                return Trans::Replace(Box::new(LoadingState {
-                    ..Default::default()
-                }))
+                self.game_over = true; 
             }
 
             if let Some(mut timer) = self.spawn_prop_timer.take() {
