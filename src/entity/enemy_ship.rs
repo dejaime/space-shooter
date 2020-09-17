@@ -28,7 +28,7 @@ pub fn spawn_simple_enemy(world: &mut World) -> Entity {
         owner_seat: PlayerSeat::NonPlayer,
         weapon_type: WeaponType::Enemy(EnemyWeapon::Simple),
         next_shot_time: 0.0,
-        cooldown: 0.05,
+        cooldown: 0.005,
     };
 
     let mut ship = world
