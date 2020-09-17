@@ -1,13 +1,11 @@
 use amethyst::{
-    ui::{UiTransform, UiText, LineMode, Anchor, Interactable},
-    core::timing::Time, 
+    core::timing::Time,
+    ecs::world::*,
     prelude::*,
+    ui::{Anchor, Interactable, LineMode, UiText, UiTransform},
 };
 
-use crate::entity::{
-    prop::{spawn_prop, prop_warm_up}
-};
-
+use crate::entity::prop::{prop_warm_up, spawn_prop};
 
 use rand::prelude::*;
 
@@ -18,20 +16,25 @@ use crate::fonts::get_font;
 pub struct MenuState {
     pub spawn_prop_timer: Option<f32>,
     pub rng: ThreadRng,
+    pub boool: bool,
+    pub p1_button: Option<Entity>,
+    pub p2_button: Option<Entity>,
 }
 
 impl Default for MenuState {
     fn default() -> Self {
-        MenuState {    
+        MenuState {
             spawn_prop_timer: Some(1.0),
             rng: thread_rng(),
+            boool: false,
+            p1_button: None,
+            p2_button: None,
         }
     }
 }
 
 impl SimpleState for MenuState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
-
         self.rng = thread_rng();
 
         prop_warm_up(data.world, &mut self.rng);
@@ -44,14 +47,22 @@ impl SimpleState for MenuState {
             String::from("1p_btn"),
             Anchor::Middle,
             Anchor::Middle,
-            0f32, 48f32, 0f32, 100f32, 30f32,
+            0f32,
+            48f32,
+            0f32,
+            100f32,
+            30f32,
         );
 
         let two_player_button_uitransform = UiTransform::new(
             String::from("2p_btn"),
             Anchor::Middle,
             Anchor::Middle,
-            0f32, 0f32, 0f32, 100f32, 30f32,
+            0f32,
+            0f32,
+            0f32,
+            100f32,
+            30f32,
         );
 
         let one_uitext = UiText::new(
@@ -72,21 +83,27 @@ impl SimpleState for MenuState {
             Anchor::Middle,
         );
 
-        let _ = data.world.create_entity()
+        let p1_button = data
+            .world
+            .create_entity()
             .with(one_player_button_uitransform)
             .with(one_uitext)
             .with(Interactable)
             .build();
-        
-        let _ = data.world.create_entity()
+
+        self.p1_button = Some(p1_button);
+
+        let p2_button = data
+            .world
+            .create_entity()
             .with(two_player_button_uitransform)
             .with(two_uitext)
             .with(Interactable)
             .build();
+        self.p2_button = Some(p2_button);
     }
 
     fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
-
         let delta_time = data.world.fetch::<Time>().delta_seconds();
 
         if let Some(mut timer) = self.spawn_prop_timer.take() {
@@ -104,6 +121,24 @@ impl SimpleState for MenuState {
             }
         }
 
+        if !self.boool {
+            self.boool = true;
+
+            let p1_button = self
+                .p1_button
+                .expect("Failed deleting main menu button... somehow");
+            let p2_button = self
+                .p2_button
+                .expect("Failed deleting main menu button... somehow");
+
+            data.world
+                .delete_entity(p1_button)
+                .expect("Failed to delete entity. Was it already removed?");
+            data.world
+                .delete_entity(p2_button)
+                .expect("Failed to delete entity. Was it already removed?");
+        }
+        data.world.maintain();
         Trans::None
         // Trans::Push(Box::new(SpaceState {
         //     ..Default::default()
