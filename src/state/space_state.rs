@@ -1,14 +1,11 @@
-use amethyst::{
-    core::timing::Time, 
-    prelude::*,
-};
+use amethyst::{core::timing::Time, prelude::*};
 
 use crate::entity::{
-    enemy_ship::spawn_simple_enemy, player_ship::spawn_player_ship, prop::{spawn_prop, prop_warm_up}
+    enemy_ship::spawn_simple_enemy, player_ship::spawn_player_ship, prop::spawn_prop,
 };
 
-use crate::system::DeadPlayers;
 use crate::state::GameOverState;
+use crate::system::DeadPlayers;
 
 use rand::prelude::*;
 
@@ -85,14 +82,12 @@ impl SimpleState for SpaceState {
     }
 
     fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
-        
         let delta_time = data.world.fetch::<Time>().delta_seconds();
 
         if self.game_over {
             data.world.delete_all();
-            return Trans::Replace(Box::new(GameOverState { }));
+            return Trans::Replace(Box::new(GameOverState {}));
         }
-        
         let (p1_dead, p2_dead) = {
             let dead_players = data.world.fetch::<DeadPlayers>();
             (dead_players.p1_dead, dead_players.p2_dead)
@@ -102,7 +97,6 @@ impl SimpleState for SpaceState {
             //TODO Run Intro (Push intro state, to be popped later)
             self.running_intro = false;
         } else {
-
             if p1_dead && self.player_one_lives > 0 {
                 self.player_one_lives -= 1;
                 spawn_player_ship(data.world, false);
@@ -112,7 +106,7 @@ impl SimpleState for SpaceState {
                 self.player_two_lives -= 1;
                 spawn_player_ship(data.world, true);
             } else if p1_dead && p2_dead && self.player_one_lives <= 0 {
-                self.game_over = true; 
+                self.game_over = true;
             }
 
             if let Some(mut timer) = self.spawn_prop_timer.take() {
