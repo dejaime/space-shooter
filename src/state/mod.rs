@@ -3,6 +3,7 @@ pub use self::menu_state::MenuState;
 
 pub mod space_state;
 pub use self::space_state::SpaceState;
+pub use self::space_state::PropCounter;
 
 pub mod pause_state;
 pub use self::pause_state::PauseState;
