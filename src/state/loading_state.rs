@@ -36,7 +36,8 @@ fn initialise_camera(world: &mut World) {
     let (width, height) = (1920.0, 1080.0);
 
     let mut camera_transform = Transform::default();
-    camera_transform.set_translation_z(1.0);
+    //This makes it so Max Z for entities is <1001. Change as necessary.
+    camera_transform.set_translation_z(1001.0);
 
     world
         .create_entity()
