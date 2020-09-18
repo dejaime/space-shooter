@@ -4,7 +4,7 @@ use crate::entity::{
     enemy_ship::spawn_simple_enemy, player_ship::spawn_player_ship, prop::spawn_prop,
 };
 
-use crate::state::GameOverState;
+use crate::state::{GameMode, GameOverState, Mode};
 use crate::system::DeadPlayers;
 
 use rand::prelude::*;
@@ -35,8 +35,8 @@ pub struct SpaceState {
 impl Default for SpaceState {
     fn default() -> Self {
         SpaceState {
-            player_one_lives: 3,
-            player_two_lives: 3,
+            player_one_lives: 2,
+            player_two_lives: 2,
 
             player_one_score: 0,
             player_two_score: 0,
@@ -75,8 +75,26 @@ impl Default for PropCounter {
 
 impl SimpleState for SpaceState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
+
+        let is_p2_active = {
+            let fetched = data.world.try_fetch::<Mode>();
+            if let Some(fetched_resource) = fetched {
+                if (*fetched_resource).mode == GameMode::TwoPlayers {
+                    true
+                } else {
+                    false
+                }
+            } else {
+                false
+            }
+        };
+
         spawn_player_ship(data.world, false);
-        spawn_player_ship(data.world, true);
+        if is_p2_active {
+            spawn_player_ship(data.world, true);
+        } else {
+            self.player_two_lives = 0;
+        }
 
         spawn_simple_enemy(data.world);
     }

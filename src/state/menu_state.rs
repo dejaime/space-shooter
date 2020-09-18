@@ -21,6 +21,16 @@ pub struct MenuState {
     pub p2_button: Option<Entity>,
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
+pub enum GameMode {
+    SinglePlayer,
+    TwoPlayers
+}
+
+pub struct Mode {
+    pub mode: GameMode,
+}
+
 impl Default for MenuState {
     fn default() -> Self {
         MenuState {
@@ -90,7 +100,6 @@ impl SimpleState for MenuState {
             .with(one_uitext)
             .with(Interactable)
             .build();
-
         self.p1_button = Some(p1_button);
 
         let p2_button = data
@@ -138,19 +147,23 @@ impl SimpleState for MenuState {
     		match ui_event.event_type {
     			UiEventType::Click if p1_is_target || p2_is_target => {
 
+                    data.world.insert(Mode {
+                        mode: if p1_is_target {GameMode::SinglePlayer} else {GameMode::TwoPlayers}
+                    });
+
                     let p1_button = self
                         .p1_button
-                        .expect("Failed deleting main menu button... somehow");
+                        .expect("Failed deleting main menu p1 button... somehow");
                     let p2_button = self
                         .p2_button
-                        .expect("Failed deleting main menu button... somehow");
+                        .expect("Failed deleting main menu p2 button... somehow");
 
                     data.world
                         .delete_entity(p1_button)
-                        .expect("Failed to delete entity. Was it already removed?");
+                        .expect("Failed deleting main menu p1 button... somehow");
                     data.world
                         .delete_entity(p2_button)
-                        .expect("Failed to delete entity. Was it already removed?");
+                        .expect("Failed deleting main menu p2 button... somehow");
                     next_state = Trans::Replace(Box::new(SpaceState {
                             ..Default::default()
                         }))

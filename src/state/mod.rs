@@ -1,5 +1,7 @@
 pub mod menu_state;
 pub use self::menu_state::MenuState;
+pub use self::menu_state::GameMode;
+pub use self::menu_state::Mode;
 
 pub mod space_state;
 pub use self::space_state::SpaceState;
