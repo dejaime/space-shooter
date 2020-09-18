@@ -97,18 +97,31 @@ impl SimpleState for SpaceState {
         }
 
         spawn_simple_enemy(data.world);
+        println!("P2 LIVES {}", self.player_two_lives);
     }
 
     fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
         let delta_time = data.world.fetch::<Time>().delta_seconds();
+        let is_p2_active = {
+            let fetched = data.world.try_fetch::<Mode>();
+            if let Some(fetched_resource) = fetched {
+                if (*fetched_resource).mode == GameMode::TwoPlayers {
+                    true
+                } else {
+                    false
+                }
+            } else {
+                false
+            }
+        };
 
         if self.game_over {
             data.world.delete_all();
             return Trans::Replace(Box::new(GameOverState {}));
         }
-        let (p1_dead, p2_dead) = {
+        let (mut p1_dead, mut p2_dead) = {
             let dead_players = data.world.fetch::<DeadPlayers>();
-            (dead_players.p1_dead, dead_players.p2_dead)
+            (dead_players.p1_dead, is_p2_active && dead_players.p2_dead)
         };
 
         if self.running_intro {
@@ -118,12 +131,16 @@ impl SimpleState for SpaceState {
             if p1_dead && self.player_one_lives > 0 {
                 self.player_one_lives -= 1;
                 spawn_player_ship(data.world, false);
+                p1_dead = false;
             }
 
-            if p2_dead && self.player_two_lives > 0 {
+            if is_p2_active && p2_dead && self.player_two_lives > 0 {
                 self.player_two_lives -= 1;
                 spawn_player_ship(data.world, true);
-            } else if p1_dead && p2_dead && self.player_one_lives <= 0 {
+                p2_dead = false;
+            }
+            
+            if p1_dead && self.player_one_lives == 0 && (!is_p2_active || (p2_dead && self.player_two_lives == 0)) {
                 self.game_over = true;
             }
 
