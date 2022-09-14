@@ -1,8 +1,6 @@
-# WIP
+# RIP
 
-This is still a work in progress
-
-Follow the progress at https://trello.com/b/iFWbsMax/space-shooter
+RIP Amethyst Game Engine
 
 ## How to run
 
